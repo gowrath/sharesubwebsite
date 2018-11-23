@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include partials/head %>
+<body>
+  <% include partials/nav %>
+  <h1>This is <%= title %></h1>
+  <div>
+    <label for="pokedex-search-box">Enter Pokemon ID</label>
+    <br>
+    <input id="pokedex-search-box" type="text" required>
+    <br>
+    <button id="pokedex-search-button">Search</button>
+  </div>
+  <br>
+  <% include partials/footer %>
+  <% include partials/scripts %>
+  <script src="/javascripts/pokedex.js"></script>
+</body>
+</html>

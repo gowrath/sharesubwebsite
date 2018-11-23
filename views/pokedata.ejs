@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include partials/head %>
+<body>
+  <% include partials/nav %>
+  <h1>This is <%= title %></h1>
+  <div>
+    <ul>
+      <% bulkData.moves.forEach(function(move) { %>
+        <li><%= move.move.name %></li>
+      <% }); %>
+    </ul>
+  </div>
+  <br>
+  <% include partials/footer %>
+  <% include partials/scripts %>
+</body>
+</html>
