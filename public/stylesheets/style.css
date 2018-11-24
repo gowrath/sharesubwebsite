@@ -1,11 +1,71 @@
 body {
-  margin: 0;
-  padding: 0;
-  font-family: fantasy;
+  box-sizing: border-box;
+  font-family: 'Raleway', 'Inknut Antiqua', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-size: 16px; }
+
+nav {
+  font-weight: 600; }
+  nav .brand-logo {
+    display: block;
+    margin-top: 8px;
+    margin-left: 40px; }
+  nav .brand-logo img {
+    height: 48px; }
+  nav li a {
+    font-size: 20px; }
+    nav li a:hover {
+      background-color: rgba(255, 0, 0, 0.1); }
+
+footer {
+  margin-top: 80px; }
+
+.sect {
+  margin-top: 80px; }
+
+.hero {
+  margin: 80px auto;
+  text-align: center; }
+  .hero h1 {
+    font-weight: bold;
+    font-family: 'Inknut Antiqua'; }
+  .hero p {
+    font-size: 20px; }
+
+.carousel {
+  cursor: pointer;
+  height: 600px; }
+  .carousel #carousel-1 {
+    background-image: url("/images/carousel-1.jpg");
+    background-size: cover; }
+  .carousel #carousel-2 {
+    background-image: url("/images/carousel-2.jpg");
+    background-size: cover; }
+  .carousel #carousel-3 {
+    background-image: url("/images/carousel-3.jpg");
+    background-size: cover; }
+  .carousel #carousel-4 {
+    background-image: url("/images/carousel-4.jpg");
+    background-size: cover; }
+  .carousel #carousel-5 {
+    background-image: url("/images/carousel-5.jpg");
+    background-size: cover; }
+  .carousel #carousel-6 {
+    background-image: url("/images/carousel-6.jpg");
+    background-size: cover; }
+  .carousel #carousel-7 {
+    background-image: url("/images/carousel-7.jpg");
+    background-size: cover; }
+  .carousel #carousel-8 {
+    background-image: url("/images/carousel-8.jpg");
+    background-size: cover; }
+  .carousel #carousel-9 {
+    background-image: url("/images/carousel-9.jpg");
+    background-size: cover; }
+
+#side-panel li a {
+  font-weight: 600;
   font-size: 20px; }
-  body a {
-    color: #00B7FF; }
-    body a:hover {
-      color: #ccf1ff; }
+  #side-panel li a:hover {
+    background-color: rgba(255, 0, 0, 0.1); }
 
 /*# sourceMappingURL=style.css.map */
