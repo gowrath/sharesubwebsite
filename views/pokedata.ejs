@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Head-->
   <% include partials/head %>
-<body>
-  <% include partials/nav %>
-  <h1>This is <%= title %></h1>
-  <div>
-    <ul>
-      <% bulkData.moves.forEach(function(move) { %>
-        <li><%= move.move.name %></li>
-      <% }); %>
-    </ul>
-  </div>
-  <br>
-  <% include partials/footer %>
-  <% include partials/scripts %>
-</body>
+  <body>
+    <!--Navbar-->
+    <% include partials/nav %>
+    <!--Main Content-->
+    <!--Hero-->
+    <!--Footer-->
+    <% include partials/footer %>
+    <!--Scripts-->
+    <% include partials/scripts %>
+    <!--Custom Scripts-->
+  </body>
 </html>

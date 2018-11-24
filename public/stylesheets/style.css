@@ -19,6 +19,9 @@ nav {
 footer {
   margin-top: 80px; }
 
+.hide {
+  display: none; }
+
 .sect {
   margin-top: 80px; }
 
@@ -61,6 +64,11 @@ footer {
   .carousel #carousel-9 {
     background-image: url("/images/carousel-9.jpg");
     background-size: cover; }
+
+.pokemon-cell {
+  margin-bottom: 20px; }
+  .pokemon-cell div.col.s10 {
+    font-weight: 600; }
 
 #side-panel li a {
   font-weight: 600;

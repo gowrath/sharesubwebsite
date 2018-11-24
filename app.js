@@ -7,6 +7,7 @@ var sassMiddleware = require('node-sass-middleware');
 
 var indexRouter = require('./routes/index');
 var pokedexRouter = require("./routes/pokedex");
+var pokedataRouter = require("./routes/pokedata");
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use("/pokedex", pokedexRouter);
+app.use("/pokedata", pokedataRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

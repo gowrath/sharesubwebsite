@@ -1,19 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!--Head-->
   <% include partials/head %>
-<body>
-  <% include partials/nav %>
-  <h1>This is <%= title %></h1>
-  <div>
-    <label for="pokedex-search-box">Enter Pokemon ID</label>
-    <br>
-    <input id="pokedex-search-box" type="text" required>
-    <br>
-    <button id="pokedex-search-button">Search</button>
-  </div>
-  <br>
-  <% include partials/footer %>
-  <% include partials/scripts %>
-  <script src="/javascripts/pokedex.js"></script>
-</body>
+  <body>
+    <!--Navbar-->
+    <% include partials/nav %>
+    <!--Main Content-->
+    <!--Hero-->
+    <section class="container hero">
+      <h1 class="orange-text text-darken-4">Browse <%= title %></h1>
+      <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum soluta sint at adipisci, dicta corrupti aperiam tempora quaerat, iste quos, eaque ex. Dolorum temporibus dolorem, exercitationem enim ab adipisci incidunt.</p>
+    </section>
+    <!--Search Box-->
+    <section class="container sect">
+      <h4 class="center-align orange-text text-darken-4">Enter Pokemon ID or Name</h4>
+      <nav style="width: 60%; margin: 20px auto;">
+        <div class="nav-wrapper">
+          <div class="input-field grey lighten-4">
+            <input id="pokedex-search-box" type="search">
+            <label class="label-icon" for="pokedex-search-box"><i class="material-icons">search</i></label>
+            <i id="clear-search-box" class="material-icons">cancel</i>
+          </div>
+        </div>
+      </nav>
+      <a id="pokedex-search-button" style="display: block; width: 200px; margin: 20px auto;" class="waves-effect waves-light btn-large orange darken-4"><i class="material-icons right">library_books</i>Search</a>
+    </section>
+    <div style="height: 30px;"></div>
+    <!--List of Pokemon-->
+    <section class="container sect">
+      <h4 class="center-align orange-text text-darken-4">List of Pokemon by Generation</h4>
+      <h5 class="center-align grey-text text-darken-2">Generation #<span id="generation-id">1</span></h5>
+      <div style="height: 30px;"></div>
+      <div id="pokemon-list" class="row">
+        <% pokemonList.forEach(function(pokemon) { %>
+          <div class="col s12 m6 l4 black-text pokemon-cell">
+            <a style="display: block;" href="/pokedata/<%= pokemon.id %>" class="waves-effect waves-default btn grey lighten-4 orange-text text-darken-4" target="_blank">
+              <div class="row">
+                <div class="col s1"></div>
+                <div class="col s1">
+                  <img src="https://raw.githubusercontent.com/jalyna/oakdex-pokedex-sprites/master/icons/<%= pokemon.id %>.png" alt="pk_<%= pokemon.id %>">
+                </div>
+                <div class="col s10">
+                  <%= pokemon.name %>
+                </div>
+              </div>
+            </a>
+          </div>
+        <% }); %>
+      </div>
+    </section>
+    <!--Floating Action Button-->
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large orange darken-4">
+        <i class="large material-icons">layers</i>
+      </a>
+      <ul id="generation-list">
+        <li><a data-gen="1" class="btn-floating deep-orange lighten-2 disabled"><i class="material-icons">filter_1</i></a></li>
+        <li><a data-gen="2" class="btn-floating deep-orange lighten-1"><i class="material-icons">filter_2</i></a></li>
+        <li><a data-gen="3" class="btn-floating deep-orange"><i class="material-icons">filter_3</i></a></li>
+        <li><a data-gen="4" class="btn-floating deep-orange darken-1"><i class="material-icons">filter_4</i></a></li>
+        <li><a data-gen="5" class="btn-floating deep-orange darken-2"><i class="material-icons">filter_5</i></a></li>
+        <li><a data-gen="6" class="btn-floating deep-orange darken-3"><i class="material-icons">filter_6</i></a></li>
+        <li><a data-gen="7" class="btn-floating deep-orange darken-4"><i class="material-icons">filter_7</i></a></li>
+      </ul>
+    </div>
+    <!--Footer-->
+    <% include partials/footer %>
+    <!--Scripts-->
+    <% include partials/scripts %>
+    <!--Custom Scripts-->
+    <script src="/javascripts/pokedex.js"></script>
+  </body>
 </html>

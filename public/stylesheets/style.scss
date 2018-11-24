@@ -31,6 +31,10 @@ footer {
 	margin-top: 80px;
 }
 
+.hide {
+	display: none;
+}
+
 .sect {
 	margin-top: 80px;
 }
@@ -85,6 +89,13 @@ footer {
 	#carousel-9 {
 		background-image: url("/images/carousel-9.jpg");
 		background-size: cover;
+	}
+}
+
+.pokemon-cell {
+	margin-bottom: 20px;
+	div.col.s10 {
+		font-weight: 600;
 	}
 }
 
