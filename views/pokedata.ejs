@@ -7,6 +7,12 @@
     <% include partials/nav %>
     <!--Main Content-->
     <!--Hero-->
+    <h1><%= title %></h1>
+    <ul>
+      <% moveList.forEach(function(move) { %>
+        <li><%= move.description %></li>
+      <% }); %>
+    </ul>
     <!--Footer-->
     <% include partials/footer %>
     <!--Scripts-->
