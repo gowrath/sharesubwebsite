@@ -9,12 +9,14 @@ var rawPokemonData = {
 	id: null,
 	name: null,
 	weight: null,
+	weightI: null,
 	height: null,
+	heightI: null,
 	exp: null,
 	typeList: {},
 	abilityList: {},
-	statList: {},
 	evList: {},
+	statList: {},
 	moveList: [],
 	spriteUrl: null,
 	artworkUrl: null
@@ -50,8 +52,13 @@ const renderPokemonData = function(pokemonData, res) {
 const preparePokemonData = function(pokemonData, renderFunc, res) {
 	rawPokemonData.id = pokemonData["id"].toString().padStart(3, "0");
 	rawPokemonData.name = pokemonData["name"];
-	rawPokemonData.weight = pokemonData["weight"];
-	rawPokemonData.height = pokemonData["height"];
+	rawPokemonData.weight = pokemonData["weight"] / 10;
+	rawPokemonData.weightI = (rawPokemonData.weight * 2.205).toFixed(1);
+	rawPokemonData.weight = rawPokemonData.weight.toFixed(1);
+	rawPokemonData.height = pokemonData["height"] / 10;
+	rawPokemonData.heightI = Math.round(rawPokemonData.height * 39.37);
+	rawPokemonData.heightI = Math.floor(rawPokemonData.heightI / 12) + "' " + Math.round(rawPokemonData.heightI % 12) + "\"";
+	rawPokemonData.height = rawPokemonData.height.toFixed(1);
 	rawPokemonData.exp = pokemonData["base_experience"];
 	rawPokemonData.spriteUrl = getSpriteUrl(pokemonData["id"]);
 	rawPokemonData.artworkUrl = getArtworkUrl(pokemonData["id"]);

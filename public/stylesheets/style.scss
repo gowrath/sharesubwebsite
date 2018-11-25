@@ -106,6 +106,10 @@ footer {
 	margin: 40px auto;
 }
 
+.type {
+	text-transform: capitalize;
+}
+
 #side-panel {
 	li a {
 		font-weight: 600;
@@ -119,5 +123,21 @@ footer {
 #name-id {
 	h5 {
 		display: inline-block;
+	}
+}
+
+#basic-data {
+	h3 {
+		font-weight: 600;
+	}
+	h5 {
+		margin: 30px 0;
+	}
+	span {
+		display: inline-block;
+		margin-right: 20px;
+	}
+	.col {
+		margin: 10px 0;
 	}
 }

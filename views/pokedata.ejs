@@ -15,6 +15,66 @@
         <h5 style="text-transform: capitalize;">Name: <%= name %></h5>
       </div>
       <div class="artwork"><img src="<%= artworkUrl %>" alt="art<%= id %>"></div>
+      <br>
+    </section>
+    <!--Basic Data-->
+    <section class="container sect">
+      <div id="basic-data" class="container">
+        <h3 class="pink-text text-darken-3">Basic Data</h3>
+        <div style="height: 10px;"></div>
+        <!--Type-->
+        <h5 class="row">
+          <div class="col s12 m4 l3">Type(s):</div>
+          <div class="col s12 m8 l9">
+              <span class="type"><%= typeList["1"] %></span>
+              <span class="type"><%= typeList["2"] %></span>
+          </div>
+        </h5>
+        <!--Ability-->
+        <h5 class="row">
+          <div class="col s12 m12 l3">Abilities:</div>
+          <div class="col s12 m12 l4"><span><%= abilityList["1"] %></span></div>
+          <% if (abilityList["2"] != undefined) { %>
+            <div class="col s12 m12 l4"><span><%= abilityList["2"] %></span></div>
+          <% } else { %>
+            <div class="col s12 m12 l4"><span></span></div>
+          <% } %>
+          <% if (abilityList["3"] != undefined) { %>
+            <div class="col l3 hide-on-med-and-down"><span></span></div>
+            <div class="col s12 m12 l8"><span><%= abilityList["3"] %> (hidden)</span></div>
+          <% } %>
+        </h5>
+        <!--Weight-->
+        <h5 class="row">
+          <div class="col s12 m4 l3">Weight:</div>
+          <div class="col s12 m8 l9"><span><%= weight %> kg</span><span>/</span><span><%= weightI %> lbs.</span></div>
+        </h5>
+        <!--Height-->
+        <h5 class="row">
+          <div class="col s12 m4 l3">Height:</div>
+          <div class="col s12 m8 l9"><span><%= height %> m</span><span>/</span><span><%= heightI %></span></div>
+        </h5>
+        <!--Exp-->
+        <h5 class="row">
+          <div class="col s12 m4 l3">Exp. Yield: </div>
+          <div class="col s12 m8 l9"><span><%= exp %></span></div>
+        </h5>
+        <!--EV-->
+        <h5 class="row">
+          <div class="col s12 m12 l3">EV Yield: </div>
+          <div class="col s12 m6 l3">HP: <%= evList.hp %></div>
+          <div class="col s12 m6 l3">ATK: <%= evList.attack %></div>
+          <div class="col s12 m6 l3">DEF: <%= evList.defense %></div>
+          <div class="col l3 hide-on-med-and-down"></div>
+          <div class="col s12 m6 l3">SPA: <%= evList["special-attack"] %></div>
+          <div class="col s12 m6 l3">SPD: <%= evList["special-defense"] %></div>
+          <div class="col s12 m6 l3">SPE: <%= evList.speed %></div>
+        </h5>
+      </div>
+    </section>
+    <!--Stats-->
+    <section class="container sect">
+      <div class="container"></div>
     </section>
     <!--Footer-->
     <% include partials/footer %>
