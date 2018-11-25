@@ -7,12 +7,15 @@
     <% include partials/nav %>
     <!--Main Content-->
     <!--Hero-->
-    <h1><%= title %></h1>
-    <ul>
-      <% moveList.forEach(function(move) { %>
-        <li><%= move.description %></li>
-      <% }); %>
-    </ul>
+    <section class="container hero">
+      <h1 class="pink-text text-darken-3"><%= title %></h1>
+      <div id="name-id">
+        <h5>National Dex# <%= id %></h5>
+        <h5 style="width: 80px;"></h5>
+        <h5 style="text-transform: capitalize;">Name: <%= name %></h5>
+      </div>
+      <div class="artwork"><img src="<%= artworkUrl %>" alt="art<%= id %>"></div>
+    </section>
     <!--Footer-->
     <% include partials/footer %>
     <!--Scripts-->

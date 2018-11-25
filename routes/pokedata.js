@@ -18,12 +18,12 @@ var rawPokemonData = {
 	moveList: [],
 	spriteUrl: null,
 	artworkUrl: null
-}
+};
 
 var errorData = {
 	message: "Pokemon Not Found",
 	error: null
-}
+};
 
 // Get the animated sprite url for a pokemon
 const getSpriteUrl = function(id) {
@@ -48,7 +48,7 @@ const renderPokemonData = function(pokemonData, res) {
 
 // Prepare data from API to be rendered
 const preparePokemonData = function(pokemonData, renderFunc, res) {
-	rawPokemonData.id = pokemonData["id"];
+	rawPokemonData.id = pokemonData["id"].toString().padStart(3, "0");
 	rawPokemonData.name = pokemonData["name"];
 	rawPokemonData.weight = pokemonData["weight"];
 	rawPokemonData.height = pokemonData["height"];
@@ -84,8 +84,14 @@ const preparePokemonData = function(pokemonData, renderFunc, res) {
 		.then(function(response) {
 			let moveType = response["type"]["name"];
 			let movePower = response["power"];
+			if (movePower == null) {
+				movePower = "-";
+			}
 			let movePP = response["pp"];
 			let moveAccuracy = response["accuracy"];
+			if (moveAccuracy == null) {
+				moveAccuracy = "-";
+			}
 			let movePriority = response["priority"];
 			let moveClass = response["damage_class"]["name"];
 			let moveEffectChance = response["effect_chance"];
@@ -116,12 +122,21 @@ const preparePokemonData = function(pokemonData, renderFunc, res) {
 
 /* GET pokemon data page. */
 router.get("/:id", function(req, res, next) {
-	var pokeId = parseInt(req.params.id);
+	var rawId = req.params.id;
+	pokeId = parseInt(rawId);
+	if (isNaN(pokeId)) {
+		pokeId = rawId;
+	}
 	dex.getPokemonByName(pokeId)
 	.then(function(response) {
 		return response;
 	})
 	.then(function(data) {
+		rawPokemonData.typeList = {};
+		rawPokemonData.abilityList = {};
+		rawPokemonData.statList = {};
+		rawPokemonData.evList = {};
+		rawPokemonData.moveList = [];
 		preparePokemonData(data, renderPokemonData, res);
 	})
 	.catch(function(error) {

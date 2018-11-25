@@ -12,12 +12,13 @@ body {
 nav {
 	font-weight: 600;
 	.brand-logo {
-		display: block;
+		display: inline-block;
 		margin-top: 8px;
 		margin-left: 40px;
-	}
-	.brand-logo img {
+		background-image: url("/images/logo.png");
+		background-size: cover;
 		height: 48px;
+		width: 279px;
 	}
 	li a {
 		font-size: 20px;
@@ -99,6 +100,12 @@ footer {
 	}
 }
 
+.artwork {
+	width: 475px;
+	height: 475px;
+	margin: 40px auto;
+}
+
 #side-panel {
 	li a {
 		font-weight: 600;
@@ -106,5 +113,11 @@ footer {
 		&:hover {
 			background-color: rgba(255, 0, 0, 0.1);
 		}
+	}
+}
+
+#name-id {
+	h5 {
+		display: inline-block;
 	}
 }

@@ -6,11 +6,13 @@ body {
 nav {
   font-weight: 600; }
   nav .brand-logo {
-    display: block;
+    display: inline-block;
     margin-top: 8px;
-    margin-left: 40px; }
-  nav .brand-logo img {
-    height: 48px; }
+    margin-left: 40px;
+    background-image: url("/images/logo.png");
+    background-size: cover;
+    height: 48px;
+    width: 279px; }
   nav li a {
     font-size: 20px; }
     nav li a:hover {
@@ -70,10 +72,18 @@ footer {
   .pokemon-cell div.col.s10 {
     font-weight: 600; }
 
+.artwork {
+  width: 475px;
+  height: 475px;
+  margin: 40px auto; }
+
 #side-panel li a {
   font-weight: 600;
   font-size: 20px; }
   #side-panel li a:hover {
     background-color: rgba(255, 0, 0, 0.1); }
+
+#name-id h5 {
+  display: inline-block; }
 
 /*# sourceMappingURL=style.css.map */
