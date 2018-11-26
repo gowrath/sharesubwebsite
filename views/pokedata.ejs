@@ -11,10 +11,23 @@
       <h1 class="pink-text text-darken-3"><%= title %></h1>
       <div id="name-id">
         <h5>National Dex# <%= id %></h5>
+        <div id="hidden-id" class="hide"><%= id %></div>
         <h5 style="width: 80px;"></h5>
         <h5 style="text-transform: capitalize;">Name: <%= name %></h5>
       </div>
-      <div class="artwork"><img src="<%= artworkUrl %>" alt="art<%= id %>"></div>
+      <div style="height: 20px;"></div>
+      <div class="row">
+        <div class="col s12 m1 l2 hide-on-small-only"></div>
+        <div class="col s12 m5 l4">
+          <a id="prev" style="min-width: 160px;" class="waves-effect waves-light btn pink lighten-1"><i class="material-icons left">navigate_before</i>Prev.</a>
+        </div>
+        <div class="col s12 hide-on-med-and-up" style="height: 20px;"></div>
+        <div class="col s12 m5 l4">
+          <a id="next" style="min-width: 160px;" class="waves-effect waves-light btn pink lighten-1"><i class="material-icons right">navigate_next</i>Next</a>
+        </div>
+        <div class="col s12 m1 l2 hide-on-small-only"></div>
+      </div>
+      <img class="artwork" src="<%= artworkUrl %>" alt="art<%= id %>">
       <br>
     </section>
     <!--Basic Data-->
@@ -24,10 +37,13 @@
         <div style="height: 10px;"></div>
         <!--Type-->
         <h5 class="row">
-          <div class="col s12 m4 l3">Type(s):</div>
-          <div class="col s12 m8 l9">
-              <span class="type"><%= typeList["1"] %></span>
-              <span class="type"><%= typeList["2"] %></span>
+          <div class="col s12 m3 l3">Type(s):</div>
+          <div class="col s12 m4 l4">
+            <span class="type <%= typeList['1'] %>"><%= typeList['1'] %></span>
+          </div>
+          <div class="col m1 l0 hide-on-small-only"></div>
+          <div class="col s12 m4 l4">
+            <span class="type <%= typeList['2'] %>"><%= typeList['2'] %></span>
           </div>
         </h5>
         <!--Ability-->
@@ -73,13 +89,87 @@
       </div>
     </section>
     <!--Stats-->
+    <section id="game-stats" class="container sect">
+      <div class="container">
+        <h3 class="pink-text text-darken-3">Game Stats</h3>
+        <div style="height: 10px;"></div>
+        <img class="sprite" src="<%= spriteUrl %>" alt="sprite<%= id %>">
+        <h5 class="row">
+          <div class="col s12 m12 l2">HP:</div>
+          <div class="col s12 m1 l1"><span><%= statList.hp %></span></div>
+          <div class="col s0 m1 l1 hide-on-small-only"></div>
+          <div class="col s12 m8 l8"><img src="/images/stat1.png" alt="stat1" width="<%= statList.hp * 3 %>" height="24px"></div>
+        </h5>
+        <h5 class="row">
+          <div class="col s12 m12 l2">Attack:</div>
+          <div class="col s12 m1 l1"><span><%= statList.attack %></span></div>
+          <div class="col s0 m1 l1 hide-on-small-only"></div>
+          <div class="col s12 m8 l8"><img src="/images/stat2.png" alt="stat2" width="<%= statList.attack * 3 %>" height="24px"></div>
+        </h5>
+        <h5 class="row">
+          <div class="col s12 m12 l2">Defense:</div>
+          <div class="col s12 m1 l1"><span><%= statList.defense %></span></div>
+          <div class="col s0 m1 l1 hide-on-small-only"></div>
+          <div class="col s12 m8 l8"><img src="/images/stat3.png" alt="stat3" width="<%= statList.defense * 3 %>" height="24px"></div>
+        </h5>
+        <h5 class="row">
+          <div class="col s12 m12 l2">Sp. Atk:</div>
+          <div class="col s12 m1 l1"><span><%= statList["special-attack"] %></span></div>
+          <div class="col s0 m1 l1 hide-on-small-only"></div>
+          <div class="col s12 m8 l8"><img src="/images/stat4.png" alt="stat4" width="<%= statList['special-attack'] * 3 %>" height="24px"></div>
+        </h5>
+        <h5 class="row">
+          <div class="col s12 m12 l2">Sp. Def:</div>
+          <div class="col s12 m1 l1"><span><%= statList["special-defense"] %></span></div>
+          <div class="col s0 m1 l1 hide-on-small-only"></div>
+          <div class="col s12 m8 l8"><img src="/images/stat5.png" alt="stat5" width="<%= statList['special-defense'] * 3 %>" height="24px"></div>
+        </h5>
+        <h5 class="row">
+          <div class="col s12 m12 l2">Speed:</div>
+          <div class="col s12 m1 l1"><span><%= statList.speed %></span></div>
+          <div class="col s0 m1 l1 hide-on-small-only"></div>
+          <div class="col s12 m8 l8"><img src="/images/stat6.png" alt="stat6" width="<%= statList.speed * 3 %>" height="24px"></div>
+        </h5>
+      </div>
+    </section>
+    <!--Moves-->
     <section class="container sect">
-      <div class="container"></div>
+      <div id="move-data" class="container">
+        <h3 class="pink-text text-darken-3">Moves</h3>
+        <div style="height: 30px"></div>
+        <table id="move-table" class="highlight">
+          <thead>
+            <tr>
+              <th style="min-width: 120px;">Name</th>
+              <th style="min-width: 160px; text-align: center;">Type</th>
+              <th style="min-width: 120px;">Class</th>
+              <th>Pow.</th>
+              <th>Acc.</th>
+              <th>PP</th>
+              <th>Pri.</th>
+              <th style="min-width: 320px;">Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Placeholder</td>
+              <td><span class="type-s fighting">Fighting</span></td>
+              <td>Special</td>
+              <td>100</td>
+              <td>100%</td>
+              <td>10</td>
+              <td>0</td>
+              <td>Inflicts damage and has no secondary effect</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
     <!--Footer-->
     <% include partials/footer %>
     <!--Scripts-->
     <% include partials/scripts %>
     <!--Custom Scripts-->
+    <script src="/javascripts/pokedata.js"></script>
   </body>
 </html>

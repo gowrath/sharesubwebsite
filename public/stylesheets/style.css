@@ -21,8 +21,8 @@ nav {
 footer {
   margin-top: 80px; }
 
-.hide {
-  display: none; }
+.container > .container {
+  width: 90%; }
 
 .sect {
   margin-top: 80px; }
@@ -73,12 +73,88 @@ footer {
     font-weight: 600; }
 
 .artwork {
-  width: 475px;
-  height: 475px;
+  display: block;
   margin: 40px auto; }
 
+.sprite {
+  display: block;
+  margin: 50px auto;
+  margin-top: 20px; }
+
 .type {
-  text-transform: capitalize; }
+  display: block;
+  width: 180px;
+  height: 30px;
+  color: white;
+  text-shadow: 1px 1px grey;
+  text-transform: capitalize;
+  text-align: center;
+  border: none; }
+
+.type-s {
+  display: block;
+  width: 100px;
+  height: 24px;
+  margin: auto;
+  color: white;
+  text-shadow: 1px 1px grey;
+  text-transform: capitalize;
+  text-align: center;
+  border: none; }
+
+.bug {
+  background: linear-gradient(#a8b820, #8d9a1b); }
+
+.dark {
+  background: linear-gradient(#705848, #513f34); }
+
+.dragon {
+  background: linear-gradient(#7038f8, #4c08ef); }
+
+.electric {
+  background: linear-gradient(#f8d030, #f0c108); }
+
+.fairy {
+  background: linear-gradient(#F98CFF, #F540FF); }
+
+.fighting {
+  background: linear-gradient(#c03028, #9d2721); }
+
+.fire {
+  background: linear-gradient(#f08030, #dd6610); }
+
+.flying {
+  background: linear-gradient(#a890f0, #9180c4); }
+
+.ghost {
+  background: linear-gradient(#705898, #554374); }
+
+.grass {
+  background: linear-gradient(#78c850, #5ca935); }
+
+.ground {
+  background: linear-gradient(#e0c068, #d4a82f); }
+
+.ice {
+  background: linear-gradient(#98d8d8, #69c6c6); }
+
+.normal {
+  background: linear-gradient(#a8a878, #8a8a59); }
+
+.poison {
+  background: linear-gradient(#a040a0, #803380); }
+
+.psychic {
+  background: linear-gradient(#f85888, #f61c5d); }
+
+.rock {
+  background: linear-gradient(#b8a038, #93802d); }
+
+.steel {
+  background: linear-gradient(#b8b8d0, #9797ba); }
+
+.water {
+  background: linear-gradient(#6890f0, #386ceb); }
 
 #side-panel li a {
   font-weight: 600;
@@ -101,5 +177,27 @@ footer {
 
 #basic-data .col {
   margin: 10px 0; }
+
+#game-stats h3 {
+  font-weight: 600; }
+
+#game-stats h5 {
+  margin: 0; }
+
+#game-stats .row img {
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px; }
+
+#game-stats .col {
+  margin: 10px 0; }
+
+#move-data h3 {
+  font-weight: 600; }
+
+#move-data th {
+  font-size: 24px; }
+
+#move-data td {
+  min-width: 80px; }
 
 /*# sourceMappingURL=style.css.map */
