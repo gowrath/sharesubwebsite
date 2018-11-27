@@ -130,6 +130,10 @@
           <div class="col s0 m1 l1 hide-on-small-only"></div>
           <div class="col s12 m8 l8"><img src="/images/stat6.png" alt="stat6" width="<%= statList.speed * 3 %>" height="24px"></div>
         </h5>
+        <h5 class="row bold">
+          <div class="col s12 m12 l2">Total:</div>
+          <div class="col s12 m1 l1"><span><%= statList.speed + statList["special-defense"] + statList.hp + statList.attack + statList.defense + statList["special-attack"] %></span></div>
+        </h5>
       </div>
     </section>
     <!--Moves-->
@@ -151,16 +155,18 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Placeholder</td>
-              <td><span class="type-s fighting">Fighting</span></td>
-              <td>Special</td>
-              <td>100</td>
-              <td>100%</td>
-              <td>10</td>
-              <td>0</td>
-              <td>Inflicts damage and has no secondary effect</td>
-            </tr>
+            <% moveList.forEach(function(move) { %>
+              <tr>
+                <td><%= move.name %></td>
+                <td><span class="type-s <%= move.type %>"><%= move.type %></span></td>
+                <td><%= move.class %></td>
+                <td><%= move.power %></td>
+                <td><%= move.accuracy %></td>
+                <td><%= move.pp %></td>
+                <td><%= move.priority %></td>
+                <td><%= move.description %></td>
+              </tr>
+            <% }); %>
           </tbody>
         </table>
       </div>

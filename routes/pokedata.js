@@ -99,7 +99,13 @@ const preparePokemonData = function(pokemonData, renderFunc, res) {
 			if (moveAccuracy == null) {
 				moveAccuracy = "-";
 			}
+			else {
+				moveAccuracy += "%";
+			}
 			let movePriority = response["priority"];
+			if (movePriority > 0) {
+				movePriority = "+" + movePriority;
+			}
 			let moveClass = response["damage_class"]["name"];
 			let moveEffectChance = response["effect_chance"];
 			let moveDescription = response["effect_entries"][0]["short_effect"];

@@ -21,6 +21,9 @@ nav {
 footer {
   margin-top: 80px; }
 
+.bold {
+  font-weight: 700; }
+
 .container > .container {
   width: 90%; }
 
