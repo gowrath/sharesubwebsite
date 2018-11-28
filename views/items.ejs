@@ -13,22 +13,155 @@
       <div style="height: 10px;"></div>
     </section>
     <!--Pokeballs-->
-    <section class="container sect">
+    <section id="pokeballs" class="container sect">
       <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Pokéballs</h3>
+      <!--standard-balls-->
       <div style="height: 10px;"></div>
+      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Standard Balls</h6>
       <div class="container">
-        <h6 style="font-size: 24px;">Standard Balls</h6>
+        <div style="height: 5px;"></div>
+        <table>
+          <tbody>
+            <% itemsData['standard-balls'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
       </div>
+      <br>
+      <!--apricorn-balls-->
+      <br>
+      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Apricorn Balls</h6>
+      <div class="container">
+        <div style="height: 5px;"></div>
+        <table>
+          <tbody>
+            <% itemsData['apricorn-balls'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <!--special-balls-->
+      <br>
+      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Special Balls</h6>
+      <div class="container">
+        <div style="height: 5px;"></div>
+        <table>
+          <tbody>
+            <% itemsData['special-balls'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <br>
     </section>
     <!--Battle Effect-->
+    <section id="battle-effect" class="container sect">
+      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Battle Effect</h3>
+      <!--stat-boosts-->
+      <div style="height: 10px;"></div>
+      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Stat Boosts</h6>
+      <div class="container">
+        <div style="height: 5px;"></div>
+        <table>
+          <tbody>
+            <% itemsData['stat-boosts'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <!--healing-->
+      <br>
+      <div style="height: 10px;"></div>
+      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Healing</h6>
+      <div class="container">
+        <div style="height: 5px;"></div>
+        <table>
+          <tbody>
+            <% itemsData['healing'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+            <% itemsData['revival'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+            <% itemsData['pp-recovery'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+      <!--status-cures-->
+      <br>
+      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Status Cures</h6>
+      <div class="container">
+        <div style="height: 5px;"></div>
+        <table>
+          <tbody>
+            <% itemsData['status-cures'].forEach(function(item) { %>
+              <tr>
+                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+                <td class="item-name"><%= item['name'] %></td>
+                <td class="item-description"><%= item['description'] %></td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+      <br>
+    </section>
     <!--Held Effect-->
     <!--Berries-->
     <!--Evolution-->
     <!--Miscellaneous-->
+    <!--Floating Action Button-->
+    <div class="fixed-action-btn toolbar direction-top">
+      <a class="btn-floating btn-large yellow darken-4">
+        <i class="large material-icons">gamepad</i>
+      </a>
+      <ul>
+        <li class="waves-effect waves-light"><a href="#pokeballs"><i class="material-icons">adjust</i></a></li>
+        <li class="waves-effect waves-light"><a href="#battle-effect"><i class="material-icons">healing</i></a></li>
+      </ul>
+    </div>
     <!--Footer-->
     <% include partials/footer %>
     <!--Scripts-->
     <% include partials/scripts %>
     <!--Custom Scripts-->
+    <script src="/javascripts/items.js"></script>
   </body>
 </html>

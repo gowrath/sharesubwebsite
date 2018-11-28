@@ -5,7 +5,7 @@
 // Styles
 body {
 	box-sizing: border-box;
-	font-family: 'Raleway', 'Inknut Antiqua', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+	font-family: 'Montserrat', 'Raleway', 'Inknut Antiqua', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 	font-size: 16px;
 }
 
@@ -117,6 +117,21 @@ footer {
 	margin-top: 20px;
 }
 
+.item-name {
+	min-width: 160px;
+	font-size: 18px;
+	font-weight: 600;
+	text-transform: capitalize;
+}
+
+.item-picture {
+	min-width: 120px;
+}
+
+.item-description {
+	min-width: 300px;
+}
+
 .type {
 	display: block;
 	width: 180px;
@@ -210,6 +225,18 @@ footer {
 
 .water {
 	background: linear-gradient(#6890f0, #386ceb);
+}
+
+#cards {
+	.card {
+		min-height: 350px;
+		position: relative;
+	}
+	.card-action {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+	}
 }
 
 #side-panel {

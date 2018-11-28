@@ -23,8 +23,15 @@ var renderItemsData = {
 // Generate the sprite url for each item
 const getItemSpriteUrl = function(name) {
 	let serebiiName = name.replace("-", "");
+	serebiiName = serebiiName.toLowerCase();
 	if (name === "never-melt-ice") {
 		serebiiName = "never-meltice";
+	}
+	else if (name === "x-sp-atk") {
+		serebiiName = "xsp.atk";
+	}
+	else if (name === "x-sp-def") {
+		serebiiName = "xsp.def";
 	}
 	return "https://www.serebii.net/itemdex/sprites/pgl/" + serebiiName + ".png";
 }
@@ -33,6 +40,15 @@ const formatItemName = function(name) {
 	let nameArr = name.split("-");
 	if (name === "never-melt-ice") {
 		return "Never-Melt Ice";
+	}
+	else if (name === "guard-spec") {
+		return "Guard Spec."
+	}
+	else if (name === "x-sp-atk") {
+		return "X Sp. Atk"
+	}
+	else if (name === "x-sp-def") {
+		return "X Sp. Def"
 	}
 	else {
 		return nameArr.join(" ");
@@ -58,11 +74,16 @@ router.get("/", function(req, res, next) {
 					let itemRealName = formatItemName(itemName);
 					let itemSpriteUrl = getItemSpriteUrl(itemName);
 					let itemDescription = data["effect_entries"][0]["short_effect"];
+					let itemID = data["id"];
 					newItem["name"] = itemRealName;
 					newItem["spriteUrl"] = itemSpriteUrl;
 					newItem["description"] = itemDescription;
+					newItem["id"] = itemID;
 					renderItemsData["itemsData"][categoryName].push(newItem);
 					if (renderItemsData["itemsData"][categoryName].length === itemsCount && !renderItemsData["itemsData"][categoryName].includes(undefined)) {
+						renderItemsData["itemsData"][categoryName].sort(function(a, b) {
+							return parseInt(a["id"]) - parseInt(b["id"]);
+						})
 						ApiFlags.push(1);
 						if (ApiFlags.length === categoryCount) {
 							// render
