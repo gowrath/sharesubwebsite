@@ -5,7 +5,7 @@ var pokedex = require('pokedex-promise-v2');
 var dex = new pokedex();
 
 var rawPokemonData = {
-	title: "Pokemon Details",
+	title: "Pokémon Details",
 	id: null,
 	name: null,
 	weight: null,
@@ -23,7 +23,7 @@ var rawPokemonData = {
 };
 
 var errorData = {
-	message: "Pokemon Not Found",
+	message: "Pokémon Not Found",
 	error: null
 };
 

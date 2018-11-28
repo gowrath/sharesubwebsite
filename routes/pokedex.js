@@ -5,7 +5,7 @@ var pokedex = require('pokedex-promise-v2');
 var dex = new pokedex();
 
 var renderDexData = {
-	title: "Data Pokedex",
+	title: "Data Pokédex",
 	pokemonList: null
 }
 
@@ -24,6 +24,9 @@ router.get("/", function(req, res, next) {
 		}
 		renderDexData.pokemonList = pokemonList.slice(0, pokemonList.length - 147);
 		res.render("pokedex", renderDexData);
+	})
+	.catch(function(error) {
+		console.log(error);
 	})
 });
 

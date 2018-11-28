@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var renderData = {
-  title: "Pokemon World"
+  title: "Pokémon World"
 }
 
 /* GET home page. */
