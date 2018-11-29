@@ -4,10 +4,10 @@ var router = express.Router();
 var pokedex = require('pokedex-promise-v2');
 var dex = new pokedex();
 
-const itemCategoryList = ["effort-drop", "medicine", "other", "in-a-pinch", "picky-healing", "type-protection",
+const itemCategoryList = ["effort-drop", "medicine", "in-a-pinch", "picky-healing", "type-protection",
 	"special-balls", "standard-balls", "apricorn-balls", "stat-boosts", "healing", "status-cures",
-	"pp-recovery", "revival", "collectibles", "loot", "evolution", "spelunking","vitamins", "held-items",
-	"choice", "effort-training", "bad-held-items", "training", "plates", "species-specific", "type-enhancement"
+	"pp-recovery", "revival", "evolution", "spelunking", "vitamins", "held-items", "choice",
+	"effort-training", "bad-held-items", "training", "species-specific", "type-enhancement"
 ];
 
 const categoryCount = itemCategoryList.length;
@@ -22,7 +22,7 @@ var renderItemsData = {
 
 // Generate the sprite url for each item
 const getItemSpriteUrl = function(name) {
-	let serebiiName = name.replace("-", "");
+	let serebiiName = name.split("-").join("");
 	serebiiName = serebiiName.toLowerCase();
 	if (name === "never-melt-ice") {
 		serebiiName = "never-meltice";
@@ -33,6 +33,24 @@ const getItemSpriteUrl = function(name) {
 	else if (name === "x-sp-def") {
 		serebiiName = "xsp.def";
 	}
+	else if (name === "kings-rock") {
+		serebiiName = "king'srock";
+	}
+	else if (name === "exp-share") {
+		serebiiName = "exp.share";
+	}
+	else if (name === "up-grade") {
+		serebiiName = "up-grade";
+	}
+	else if (name === "luminous-moss") {
+		return "https://cdn.bulbagarden.net/upload/6/61/Dream_Luminous_Moss_Sprite.png";
+	}
+	else if (name === "super-repel") {
+		return "/images/super-repel.png";
+	}
+	else if (name === "roseli-berry") {
+		return "https://cdn.bulbagarden.net/upload/a/a0/Dream_Roseli_Berry_Sprite.png";
+	}
 	return "https://www.serebii.net/itemdex/sprites/pgl/" + serebiiName + ".png";
 }
 
@@ -42,16 +60,35 @@ const formatItemName = function(name) {
 		return "Never-Melt Ice";
 	}
 	else if (name === "guard-spec") {
-		return "Guard Spec."
+		return "Guard Spec.";
 	}
 	else if (name === "x-sp-atk") {
-		return "X Sp. Atk"
+		return "X Sp. Atk";
 	}
 	else if (name === "x-sp-def") {
-		return "X Sp. Def"
+		return "X Sp. Def";
+	}
+	else if (name === "kings-rock") {
+		return "King's Rock";
+	}
+	else if (name === "exp-share") {
+		return "Exp. Share";
+	}
+	else if (name === "up-grade") {
+		return "Up-Grade";
 	}
 	else {
 		return nameArr.join(" ");
+	}
+}
+
+// Refine the data to eliminate certain elements
+const refineItemsData = function() {
+	let refineCategory1 = renderItemsData["itemsData"]["held-items"];
+	for (let i in refineCategory1) {
+		if (refineCategory1[i]["name"] === "pass orb") {
+			refineCategory1.splice(i, 1);
+		}
 	}
 }
 
@@ -86,7 +123,8 @@ router.get("/", function(req, res, next) {
 						})
 						ApiFlags.push(1);
 						if (ApiFlags.length === categoryCount) {
-							// render
+							// refine and render
+							refineItemsData();
 							res.render("items", renderItemsData);
 						}
 					}
