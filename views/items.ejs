@@ -1,404 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!--Head-->
-  <% include partials/head %>
-  <body>
-    <!--Navbar-->
-    <% include partials/nav %>
-    <!--Main Content-->
-    <!--Hero-->
-    <section class="container hero">
-      <h1 class="yellow-text text-darken-4"><%= title %></h1>
-      <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium molestias omnis quis iure modi, amet consectetur iusto porro aperiam reprehenderit enim ex debitis eveniet pariatur, in nam aliquam dolorem?</p>
-      <div style="height: 10px;"></div>
-    </section>
-    <!--Pokeballs-->
-    <section id="pokeballs" class="container sect">
-      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Pokéballs</h3>
-      <!--standard-balls-->
-      <div style="height: 10px;"></div>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Standard Balls</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['standard-balls'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--apricorn-balls-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Apricorn Balls</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['apricorn-balls'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--special-balls-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Special Balls</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['special-balls'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-    </section>
-    <!--Battle Effect-->
-    <section id="battle-effect" class="container sect">
-      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Battle Effect</h3>
-      <!--stat-boosts-->
-      <div style="height: 10px;"></div>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Stat Boosts</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['stat-boosts'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--healing-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Healing</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['healing'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-            <% itemsData['revival'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-            <% itemsData['pp-recovery'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--status-cures-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Status Cures</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['status-cures'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-    </section>
-    <!--Held Effect-->
-    <section id="held-effect" class="container sect">
-      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Held Effect</h3>
-      <!--general-->
-      <div style="height: 10px;"></div>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">General</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['choice'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %><% itemsData['held-items'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %><% itemsData['bad-held-items'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--training-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Training</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['training'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-            <% itemsData['effort-training'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--species-specific-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Species Specific</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['species-specific'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--type-enhancement-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Type Enhancement</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['type-enhancement'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-    </section>
-    <!--Berries-->
-    <section id="berries" class="container sect">
-      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Berries</h3>
-      <!--effort-drop-->
-      <div style="height: 10px;"></div>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Effort Drop</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['effort-drop'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--medicine-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Medicine</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['medicine'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-            <% itemsData['picky-healing'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--in-a-pinch-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">In-a-pinch</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['in-a-pinch'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--type-protection-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Type Protection</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['type-protection'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-    </section>
-    <!--Evolution-->
-    <section id="evolution" class="container sect">
-      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Evolution</h3>
-      <div style="height: 10px;"></div>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['evolution'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-    </section>
-    <!--Miscellaneous-->
-    <section id="miscellaneous" class="container sect">
-      <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Miscellaneous</h3>
-      <!--spelunking-->
-      <div style="height: 10px;"></div>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Spelunking</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['spelunking'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-      <!--vitamins-->
-      <br>
-      <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Vitamins</h6>
-      <div class="container">
-        <div style="height: 5px;"></div>
-        <table>
-          <tbody>
-            <% itemsData['vitamins'].forEach(function(item) { %>
-              <tr>
-                <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
-                <td class="item-name"><%= item['name'] %></td>
-                <td class="item-description"><%= item['description'] %></td>
-              </tr>
-            <% }); %>
-          </tbody>
-        </table>
-      </div>
-      <br>
-    </section>
-    <!--Floating Action Button-->
-    <div class="fixed-action-btn toolbar direction-top">
-      <a class="btn-floating btn-large yellow darken-4">
-        <i class="large material-icons">gamepad</i>
-      </a>
-      <ul style="font-size: 16px;">
-        <li class="waves-effect waves-light"><a href="#pokeballs">Pokéballs</a></li>
-        <li class="waves-effect waves-light"><a href="#battle-effect">Battle-Effect</a></li>
-        <li class="waves-effect waves-light"><a href="#held-effect">Held-Effect</a></li>
-        <li class="waves-effect waves-light"><a href="#berries">Berries</a></li>
-        <li class="waves-effect waves-light"><a href="#evolution">Evolution</a></li>
-        <li class="waves-effect waves-light"><a href="#miscellaneous">Miscellaneous</a></li>
-      </ul>
+<!--Head-->
+<% include partials/head %>
+
+<body>
+  <!--Navbar-->
+  <% include partials/nav %>
+  <!--Main Content-->
+  <!--Hero-->
+  <section class="container hero">
+    <h1 class="yellow-text text-darken-4">
+      <%= title %>
+    </h1>
+    <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error laudantium
+      molestias omnis quis iure modi, amet consectetur iusto porro aperiam reprehenderit enim ex debitis eveniet
+      pariatur, in nam aliquam dolorem?</p>
+    <div style="height: 10px;"></div>
+  </section>
+  <!--Pokeballs-->
+  <section id="pokeballs" class="container sect">
+    <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Pokéballs</h3>
+    <!--standard-balls-->
+    <div style="height: 10px;"></div>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Standard Balls</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['standard-balls'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
     </div>
-    <!--Footer-->
-    <% include partials/footer %>
-    <!--Scripts-->
-    <% include partials/scripts %>
-    <!--Custom Scripts-->
-    <script src="/javascripts/items.js"></script>
-  </body>
+    <br>
+    <!--apricorn-balls-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Apricorn Balls</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['apricorn-balls'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--special-balls-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Special Balls</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['special-balls'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </section>
+  <!--Battle Effect-->
+  <section id="battle-effect" class="container sect">
+    <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Battle Effect</h3>
+    <!--stat-boosts-->
+    <div style="height: 10px;"></div>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Stat Boosts</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['stat-boosts'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--healing-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Healing</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['healing'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+          <% itemsData['revival'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+          <% itemsData['pp-recovery'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--status-cures-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Status Cures</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['status-cures'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </section>
+  <!--Held Effect-->
+  <section id="held-effect" class="container sect">
+    <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Held Effect</h3>
+    <!--general-->
+    <div style="height: 10px;"></div>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">General</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['choice'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+          <% itemsData['held-items'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+          <% itemsData['bad-held-items'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--training-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Training</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['training'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+          <% itemsData['effort-training'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--species-specific-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Species Specific</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['species-specific'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--type-enhancement-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Type Enhancement</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['type-enhancement'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </section>
+  <!--Berries-->
+  <section id="berries" class="container sect">
+    <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Berries</h3>
+    <!--effort-drop-->
+    <div style="height: 10px;"></div>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Effort Drop</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['effort-drop'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--medicine-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Medicine</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['medicine'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+          <% itemsData['picky-healing'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--in-a-pinch-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">In-a-pinch</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['in-a-pinch'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--type-protection-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Type Protection</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['type-protection'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </section>
+  <!--Evolution-->
+  <section id="evolution" class="container sect">
+    <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Evolution</h3>
+    <div style="height: 10px;"></div>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['evolution'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </section>
+  <!--Miscellaneous-->
+  <section id="miscellaneous" class="container sect">
+    <h3 style="font-weight: 600;" class="yellow-text text-darken-4">Miscellaneous</h3>
+    <!--spelunking-->
+    <div style="height: 10px;"></div>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Spelunking</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['spelunking'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+    <!--vitamins-->
+    <br>
+    <h6 style="font-size: 24px; width: 95%; margin: 20px auto;">Vitamins</h6>
+    <div class="container">
+      <div style="height: 5px;"></div>
+      <table>
+        <tbody>
+          <% itemsData['vitamins'].forEach(function(item) { %>
+          <tr>
+            <td class="item-picture"><img width="60" height="60" src="<%= item['spriteUrl'] %>" alt="<% item['id'] %>"></td>
+            <td class="item-name">
+              <%= item['name'] %>
+            </td>
+            <td class="item-description">
+              <%= item['description'] %>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+    <br>
+  </section>
+  <!--Floating Action Button-->
+  <div class="fixed-action-btn toolbar direction-top">
+    <a class="btn-floating btn-large yellow darken-4">
+      <i class="large material-icons">gamepad</i>
+    </a>
+    <ul style="font-size: 16px;">
+      <li class="waves-effect waves-light"><a href="#pokeballs">Pokéballs</a></li>
+      <li class="waves-effect waves-light"><a href="#battle-effect">Battle-Effect</a></li>
+      <li class="waves-effect waves-light"><a href="#held-effect">Held-Effect</a></li>
+      <li class="waves-effect waves-light"><a href="#berries">Berries</a></li>
+      <li class="waves-effect waves-light"><a href="#evolution">Evolution</a></li>
+      <li class="waves-effect waves-light"><a href="#miscellaneous">Miscellaneous</a></li>
+    </ul>
+  </div>
+  <!--Footer-->
+  <% include partials/footer %>
+  <!--Scripts-->
+  <% include partials/scripts %>
+  <!--Custom Scripts-->
+  <script src="/javascripts/items.js"></script>
+</body>
+
 </html>

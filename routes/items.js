@@ -52,7 +52,7 @@ const getItemSpriteUrl = function(name) {
 		return "https://cdn.bulbagarden.net/upload/a/a0/Dream_Roseli_Berry_Sprite.png";
 	}
 	return "https://www.serebii.net/itemdex/sprites/pgl/" + serebiiName + ".png";
-}
+};
 
 const formatItemName = function(name) {
 	let nameArr = name.split("-");
@@ -80,7 +80,7 @@ const formatItemName = function(name) {
 	else {
 		return nameArr.join(" ");
 	}
-}
+};
 
 // Refine the data to eliminate certain elements
 const refineItemsData = function() {
@@ -90,7 +90,7 @@ const refineItemsData = function() {
 			refineCategory1.splice(i, 1);
 		}
 	}
-}
+};
 
 /* GET items page. */
 router.get("/", function(req, res, next) {

@@ -7,7 +7,7 @@ var dex = new pokedex();
 var renderDexData = {
 	title: "Data Pokédex",
 	pokemonList: null
-}
+};
 
 /* GET pokedex page. */
 router.get("/", function(req, res, next) {

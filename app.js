@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var pokedexRouter = require("./routes/pokedex");
 var pokedataRouter = require("./routes/pokedata");
 var itemsRouter = require('./routes/items');
+var calcRouter = require('./routes/calc');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/', indexRouter);
 app.use("/pokedex", pokedexRouter);
 app.use("/pokedata", pokedataRouter);
 app.use("/items", itemsRouter);
+app.use("/calc", calcRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

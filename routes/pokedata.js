@@ -36,17 +36,17 @@ const getSpriteUrl = function(id) {
 	else {
 		return "https://pokemon-trainer.com/images/sprite/sunmoonani/" + _id + ".gif";
 	}
-}
+};
 
 // Get the large artwork url for a pokemon
 const getArtworkUrl = function(id) {
 	return "https://raw.githubusercontent.com/shadowxq126/pokemon-artwork/master/official-artwork/" + parseInt(id) + ".png";
-}
+};
 
 // Render prepared data on pokemon data page
 const renderPokemonData = function(pokemonData, res) {
 	res.render("pokedata", pokemonData);
-}
+};
 
 // Prepare data from API to be rendered
 const preparePokemonData = function(pokemonData, renderFunc, res) {
@@ -131,7 +131,7 @@ const preparePokemonData = function(pokemonData, renderFunc, res) {
 			console.log(error);
 		})
 	}
-}
+};
 
 /* GET pokemon data page. */
 router.get("/:id", function(req, res, next) {
@@ -157,6 +157,6 @@ router.get("/:id", function(req, res, next) {
 		errorData.error.status = 404;
 		res.render("error", errorData);
 	})
-})
+});
 
 module.exports = router;

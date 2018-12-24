@@ -1,82 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!--Head-->
-  <% include partials/head %>
-  <body>
-    <!--Navbar-->
-    <% include partials/nav %>
-    <!--Main Content-->
-    <!--Hero-->
-    <section class="container hero">
-      <h1 class="red-text text-darken-2">Welcome to <%= title %></h1>
-      <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, autem itaque mollitia eveniet repellendus neque iusto esse possimus recusandae hic minus enim, id cupiditate labore? Tempore mollitia illo nostrum laboriosam.</p>
-    </section>
-    <!--Carousel-->
-    <section class="container sect">
-      <div class="carousel carousel-slider center">
-        <div class="carousel-item black white-text" id="carousel-1">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-2">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-3">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-4">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-5">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-6">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-7">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-8">
-        </div>
-        <div class="carousel-item black white-text" id="carousel-9">
-        </div>
+<!--Head-->
+<% include partials/head %>
+
+<body>
+  <!--Navbar-->
+  <% include partials/nav %>
+  <!--Main Content-->
+  <!--Hero-->
+  <section class="container hero">
+    <h1 class="red-text text-darken-1">Welcome to
+      <%= title %>
+    </h1>
+    <p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, autem itaque
+      mollitia eveniet repellendus neque iusto esse possimus recusandae hic minus enim, id cupiditate labore? Tempore
+      mollitia illo nostrum laboriosam.</p>
+  </section>
+  <!--Carousel-->
+  <section class="container sect">
+    <div class="carousel carousel-slider center">
+      <div class="carousel-item black white-text" id="carousel-1">
       </div>
-    </section>
-    <!--Cards-->
-    <section id="cards" class="container sect">
-      <div class="row">
-        <div class="col s12 m6 l4">
-          <div class="card yellow darken-4">
-            <div class="card-content white-text">
-              <span class="card-title">Pokémon Data</span>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem minus nulla animi, ipsum alias suscipit quaerat labore ipsam excepturi culpa pariatur fugit modi omnis, ex quis illum! Rem, totam quasi.</p>
-            </div>
-            <div class="card-action">
-              <a class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons">local_offer</i></a>
-            </div>
+      <div class="carousel-item black white-text" id="carousel-2">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-3">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-4">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-5">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-6">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-7">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-8">
+      </div>
+      <div class="carousel-item black white-text" id="carousel-9">
+      </div>
+    </div>
+  </section>
+  <!--Cards-->
+  <section id="cards" class="container sect">
+    <div class="row">
+      <div class="col s12 m6 l4">
+        <div class="card yellow darken-4">
+          <div class="card-content white-text">
+            <span class="card-title">Pokémon Data</span>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Exercitationem minus nulla animi, ipsum alias
+              suscipit quaerat labore ipsam excepturi culpa pariatur fugit modi omnis, ex quis illum! Rem, totam quasi.</p>
           </div>
-        </div>
-        <div class="col s12 m6 l4">
-          <div class="card amber darken-4">
-            <div class="card-content white-text">
-              <span class="card-title">Items Data</span>
-              <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat enim quidem laudantium distinctio ab deleniti nisi commodi quasi adipisci earum, impedit delectus molestiae, modi corporis deserunt repudiandae ullam, optio dolores.</p>
-            </div>
-            <div class="card-action">
-              <a class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons">local_offer</i></a>
-            </div>
-          </div>
-        </div>
-        <div class="col s12 m6 l4">
-          <div class="card orange darken-4">
-            <div class="card-content white-text">
-              <span class="card-title">Damage Calculator</span>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore ad illo earum ipsum. Fugiat blanditiis exercitationem voluptas recusandae temporibus nemo, maxime in. Recusandae omnis temporibus corrupti consequatur sequi quia.</p>
-            </div>
-            <div class="card-action">
-              <a class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons">local_offer</i></a>
-            </div>
+          <div class="card-action">
+            <a class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons">local_offer</i></a>
           </div>
         </div>
       </div>
-    </section>
-    <!--Footer-->
-    <% include partials/footer %>
-    <!--Scripts-->
-    <% include partials/scripts %>
-    <!--Custom Scripts-->
-    <script src="/javascripts/index.js"></script>
-  </body>
+      <div class="col s12 m6 l4">
+        <div class="card amber darken-4">
+          <div class="card-content white-text">
+            <span class="card-title">Items Data</span>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat enim quidem laudantium distinctio ab
+              deleniti nisi commodi quasi adipisci earum, impedit delectus molestiae, modi corporis deserunt
+              repudiandae ullam, optio dolores.</p>
+          </div>
+          <div class="card-action">
+            <a class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons">local_offer</i></a>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m6 l4">
+        <div class="card orange darken-4">
+          <div class="card-content white-text">
+            <span class="card-title">Damage Calculator</span>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore ad illo earum ipsum. Fugiat
+              blanditiis exercitationem voluptas recusandae temporibus nemo, maxime in. Recusandae omnis temporibus
+              corrupti consequatur sequi quia.</p>
+          </div>
+          <div class="card-action">
+            <a class="btn-floating btn-large waves-effect waves-light red darken-2"><i class="material-icons">local_offer</i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Footer-->
+  <% include partials/footer %>
+  <!--Scripts-->
+  <% include partials/scripts %>
+  <!--Custom Scripts-->
+  <script src="/javascripts/index.js"></script>
+</body>
+
 </html>
