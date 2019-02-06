@@ -30,12 +30,7 @@ var errorData = {
 // Get the animated sprite url for a pokemon
 const getSpriteUrl = function(id) {
 	let _id = id.toString().padStart(3, "0");
-	if (id < 722) {
-		return "https://pokemon-trainer.com/images/sprite/xyorasani/" + _id + ".gif";
-	}
-	else {
-		return "https://pokemon-trainer.com/images/sprite/sunmoonani/" + _id + ".gif";
-	}
+	return "https://raw.githubusercontent.com/Kairn/asset-bank/master/pokémon/animated-sprites/" + _id + ".gif";
 };
 
 // Get the large artwork url for a pokemon
