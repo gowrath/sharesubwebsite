@@ -59,6 +59,20 @@ footer {
   }
 }
 
+.flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
 .carousel {
   cursor: pointer;
   height: 600px;
@@ -113,9 +127,8 @@ footer {
 }
 
 .sprite {
-  display: block;
-  margin: 50px auto;
-  margin-top: 20px;
+  display: inline-block;
+  margin: 0 55px;
   -webkit-user-select: none;
 }
 

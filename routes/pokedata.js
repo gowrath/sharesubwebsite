@@ -33,6 +33,12 @@ const getSpriteUrl = function(id) {
 	return "https://raw.githubusercontent.com/Kairn/asset-bank/master/pokémon/animated-sprites/" + _id + ".gif";
 };
 
+// Get the shiny sprite url for a pokemon
+const getShinySpriteUrl = function(id) {
+	let _id = id.toString().padStart(3, "0");
+	return "https://raw.githubusercontent.com/Kairn/asset-bank/master/pokémon/animated-sprites/" + _id + "(s).gif";
+};
+
 // Get the large artwork url for a pokemon
 const getArtworkUrl = function(id) {
 	return "https://raw.githubusercontent.com/Kairn/asset-bank/master/pokémon/official-artwork/" + parseInt(id) + ".png";
@@ -56,6 +62,7 @@ const preparePokemonData = function(pokemonData, renderFunc, res) {
 	rawPokemonData.height = rawPokemonData.height.toFixed(1);
 	rawPokemonData.exp = pokemonData["base_experience"];
 	rawPokemonData.spriteUrl = getSpriteUrl(pokemonData["id"]);
+	rawPokemonData.shinyUrl = getShinySpriteUrl(pokemonData["id"]);
 	rawPokemonData.artworkUrl = getArtworkUrl(pokemonData["id"]);
 	// Type(s)
 	for (let i in pokemonData["types"]) {
