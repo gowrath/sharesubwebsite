@@ -40,7 +40,7 @@ const getSpriteUrl = function(id) {
 
 // Get the large artwork url for a pokemon
 const getArtworkUrl = function(id) {
-	return "https://raw.githubusercontent.com/shadowxq126/pokemon-artwork/master/official-artwork/" + parseInt(id) + ".png";
+	return "https://raw.githubusercontent.com/Kairn/asset-bank/master/pokémon/official-artwork/" + parseInt(id) + ".png";
 };
 
 // Render prepared data on pokemon data page
@@ -88,48 +88,48 @@ const preparePokemonData = function(pokemonData, renderFunc, res) {
 		let newMove = {};
 		let moveName = pokemonData["moves"][i]["move"]["name"];
 		dex.getMoveByName(moveName)
-		.then(function(response) {
-			let moveType = response["type"]["name"];
-			let movePower = response["power"];
-			if (movePower == null) {
-				movePower = "-";
-			}
-			let movePP = response["pp"];
-			let moveAccuracy = response["accuracy"];
-			if (moveAccuracy == null) {
-				moveAccuracy = "-";
-			}
-			else {
-				moveAccuracy += "%";
-			}
-			let movePriority = response["priority"];
-			if (movePriority > 0) {
-				movePriority = "+" + movePriority;
-			}
-			let moveClass = response["damage_class"]["name"];
-			let moveEffectChance = response["effect_chance"];
-			let moveDescription = response["effect_entries"][0]["short_effect"];
-			if (moveDescription.includes("$effect_chance")) {
-				moveDescription = moveDescription.replace("$effect_chance", moveEffectChance.toString());
-			}
-			newMove["name"] = moveName;
-			newMove["type"] = moveType;
-			newMove["power"] = movePower;
-			newMove["pp"] = movePP;
-			newMove["accuracy"] = moveAccuracy;
-			newMove["priority"] = movePriority;
-			newMove["class"] = moveClass;
-			newMove["effect_chance"] = moveEffectChance;
-			newMove["description"] = moveDescription;
-			rawPokemonData.moveList.push(newMove);
-			// Check move array and trigger callback
-			if (rawPokemonData.moveList.length === moveCount && !rawPokemonData.moveList.includes(undefined)) {
-				renderFunc(rawPokemonData, res);
-			}
-		})
-		.catch(function(error) {
-			console.log(error);
-		})
+			.then(function(response) {
+				let moveType = response["type"]["name"];
+				let movePower = response["power"];
+				if (movePower == null) {
+					movePower = "-";
+				}
+				let movePP = response["pp"];
+				let moveAccuracy = response["accuracy"];
+				if (moveAccuracy == null) {
+					moveAccuracy = "-";
+				}
+				else {
+					moveAccuracy += "%";
+				}
+				let movePriority = response["priority"];
+				if (movePriority > 0) {
+					movePriority = "+" + movePriority;
+				}
+				let moveClass = response["damage_class"]["name"];
+				let moveEffectChance = response["effect_chance"];
+				let moveDescription = response["effect_entries"][0]["short_effect"];
+				if (moveDescription.includes("$effect_chance")) {
+					moveDescription = moveDescription.replace("$effect_chance", moveEffectChance.toString());
+				}
+				newMove["name"] = moveName;
+				newMove["type"] = moveType;
+				newMove["power"] = movePower;
+				newMove["pp"] = movePP;
+				newMove["accuracy"] = moveAccuracy;
+				newMove["priority"] = movePriority;
+				newMove["class"] = moveClass;
+				newMove["effect_chance"] = moveEffectChance;
+				newMove["description"] = moveDescription;
+				rawPokemonData.moveList.push(newMove);
+				// Check move array and trigger callback
+				if (rawPokemonData.moveList.length === moveCount && !rawPokemonData.moveList.includes(undefined)) {
+					renderFunc(rawPokemonData, res);
+				}
+			})
+			.catch(function(error) {
+				console.log(error);
+			})
 	}
 };
 
@@ -141,22 +141,22 @@ router.get("/:id", function(req, res, next) {
 		pokeId = rawId;
 	}
 	dex.getPokemonByName(pokeId)
-	.then(function(response) {
-		return response;
-	})
-	.then(function(data) {
-		rawPokemonData.typeList = {};
-		rawPokemonData.abilityList = {};
-		rawPokemonData.statList = {};
-		rawPokemonData.evList = {};
-		rawPokemonData.moveList = [];
-		preparePokemonData(data, renderPokemonData, res);
-	})
-	.catch(function(error) {
-		errorData.error = error;
-		errorData.error.status = 404;
-		res.render("error", errorData);
-	})
+		.then(function(response) {
+			return response;
+		})
+		.then(function(data) {
+			rawPokemonData.typeList = {};
+			rawPokemonData.abilityList = {};
+			rawPokemonData.statList = {};
+			rawPokemonData.evList = {};
+			rawPokemonData.moveList = [];
+			preparePokemonData(data, renderPokemonData, res);
+		})
+		.catch(function(error) {
+			errorData.error = error;
+			errorData.error.status = 404;
+			res.render("error", errorData);
+		})
 });
 
 module.exports = router;

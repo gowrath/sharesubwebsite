@@ -100,37 +100,37 @@ router.get("/", function(req, res, next) {
 		let categoryName = itemCategoryList[i];
 		renderItemsData["itemsData"][categoryName] = [];
 		dex.getItemCategoryByName(itemCategoryList[i])
-		.then(function(response) {
-			let itemList = response["items"];
-			let itemsCount = itemList.length;
-			for (let j in itemList) {
-				let newItem = {};
-				let itemName = itemList[j]["name"];
-				dex.getItemByName(itemName)
-				.then(function(data) {
-					let itemRealName = formatItemName(itemName);
-					let itemSpriteUrl = getItemSpriteUrl(itemName);
-					let itemDescription = data["effect_entries"][0]["short_effect"];
-					let itemID = data["id"];
-					newItem["name"] = itemRealName;
-					newItem["spriteUrl"] = itemSpriteUrl;
-					newItem["description"] = itemDescription;
-					newItem["id"] = itemID;
-					renderItemsData["itemsData"][categoryName].push(newItem);
-					if (renderItemsData["itemsData"][categoryName].length === itemsCount && !renderItemsData["itemsData"][categoryName].includes(undefined)) {
-						renderItemsData["itemsData"][categoryName].sort(function(a, b) {
-							return parseInt(a["id"]) - parseInt(b["id"]);
+			.then(function(response) {
+				let itemList = response["items"];
+				let itemsCount = itemList.length;
+				for (let j in itemList) {
+					let newItem = {};
+					let itemName = itemList[j]["name"];
+					dex.getItemByName(itemName)
+						.then(function(data) {
+							let itemRealName = formatItemName(itemName);
+							let itemSpriteUrl = getItemSpriteUrl(itemName);
+							let itemDescription = data["effect_entries"][0]["short_effect"];
+							let itemID = data["id"];
+							newItem["name"] = itemRealName;
+							newItem["spriteUrl"] = itemSpriteUrl;
+							newItem["description"] = itemDescription;
+							newItem["id"] = itemID;
+							renderItemsData["itemsData"][categoryName].push(newItem);
+							if (renderItemsData["itemsData"][categoryName].length === itemsCount && !renderItemsData["itemsData"][categoryName].includes(undefined)) {
+								renderItemsData["itemsData"][categoryName].sort(function(a, b) {
+									return parseInt(a["id"]) - parseInt(b["id"]);
+								})
+								ApiFlags.push(1);
+								if (ApiFlags.length === categoryCount) {
+									// refine and render
+									refineItemsData();
+									res.render("items", renderItemsData);
+								}
+							}
 						})
-						ApiFlags.push(1);
-						if (ApiFlags.length === categoryCount) {
-							// refine and render
-							refineItemsData();
-							res.render("items", renderItemsData);
-						}
-					}
-				})
-			}
-		})
+				}
+			})
 	}
 });
 

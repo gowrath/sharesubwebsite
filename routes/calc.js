@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var renderData = {
-	title: "Pokémon Damage Calculator"
+  title: "Pokémon Damage Calculator"
 };
 
 /* GET home page. */

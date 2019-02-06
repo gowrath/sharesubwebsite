@@ -1,6 +1,6 @@
 body {
   box-sizing: border-box;
-  font-family: 'Montserrat', 'Raleway', 'Inknut Antiqua', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+  font-family: "Montserrat", "Raleway", "Inknut Antiqua", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Verdana, sans-serif;
   font-size: 16px; }
 
 nav {
@@ -35,7 +35,7 @@ footer {
   text-align: center; }
   .hero h1 {
     font-weight: bold;
-    font-family: 'Inknut Antiqua'; }
+    font-family: "Inknut Antiqua"; }
   .hero p {
     font-size: 20px; }
 
@@ -82,7 +82,8 @@ footer {
 .sprite {
   display: block;
   margin: 50px auto;
-  margin-top: 20px; }
+  margin-top: 20px;
+  -webkit-user-select: none; }
 
 .item-name {
   min-width: 180px;
@@ -130,7 +131,7 @@ footer {
   background: linear-gradient(#f8d030, #f0c108); }
 
 .fairy {
-  background: linear-gradient(#F98CFF, #F540FF); }
+  background: linear-gradient(#f98cff, #f540ff); }
 
 .fighting {
   background: linear-gradient(#c03028, #9d2721); }

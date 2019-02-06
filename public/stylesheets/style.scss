@@ -4,297 +4,299 @@
 
 // Styles
 body {
-	box-sizing: border-box;
-	font-family: 'Montserrat', 'Raleway', 'Inknut Antiqua', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-	font-size: 16px;
+  box-sizing: border-box;
+  font-family: "Montserrat", "Raleway", "Inknut Antiqua", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Verdana, sans-serif;
+  font-size: 16px;
 }
 
 nav {
-	font-weight: 600;
-	.brand-logo {
-		display: inline-block;
-		margin-top: 8px;
-		margin-left: 40px;
-		background-image: url("/images/logo.png");
-		background-size: cover;
-		height: 48px;
-		width: 279px;
-	}
-	li a {
-		font-size: 20px;
-		&:hover {
-			background-color: rgba(255, 0, 0, 0.1);
-		}
-	}
+  font-weight: 600;
+  .brand-logo {
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 40px;
+    background-image: url("/images/logo.png");
+    background-size: cover;
+    height: 48px;
+    width: 279px;
+  }
+  li a {
+    font-size: 20px;
+    &:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  }
 }
 
 footer {
-	margin-top: 80px;
+  margin-top: 80px;
 }
 
 .bold {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .container {
-	> .container {
-		width: 90%;
-	}
+  > .container {
+    width: 90%;
+  }
 }
 
 .sect {
-	margin-top: 80px;
+  margin-top: 80px;
 }
 
 .hero {
-	margin: 80px auto;
-	text-align: center;
-	h1 {
-		font-weight: bold;
-		font-family: 'Inknut Antiqua';
-	}
-	p {
-		font-size: 20px;
-	}
+  margin: 80px auto;
+  text-align: center;
+  h1 {
+    font-weight: bold;
+    font-family: "Inknut Antiqua";
+  }
+  p {
+    font-size: 20px;
+  }
 }
 
 .carousel {
-	cursor: pointer;
-	height: 600px;
-	#carousel-1 {
-		background-image: url("/images/carousel-1.jpg");
-		background-size: cover;
-	}
-	#carousel-2 {
-		background-image: url("/images/carousel-2.jpg");
-		background-size: cover;
-	}
-	#carousel-3 {
-		background-image: url("/images/carousel-3.jpg");
-		background-size: cover;
-	}
-	#carousel-4 {
-		background-image: url("/images/carousel-4.jpg");
-		background-size: cover;
-	}
-	#carousel-5 {
-		background-image: url("/images/carousel-5.jpg");
-		background-size: cover;
-	}
-	#carousel-6 {
-		background-image: url("/images/carousel-6.jpg");
-		background-size: cover;
-	}
-	#carousel-7 {
-		background-image: url("/images/carousel-7.jpg");
-		background-size: cover;
-	}
-	#carousel-8 {
-		background-image: url("/images/carousel-8.jpg");
-		background-size: cover;
-	}
-	#carousel-9 {
-		background-image: url("/images/carousel-9.jpg");
-		background-size: cover;
-	}
+  cursor: pointer;
+  height: 600px;
+  #carousel-1 {
+    background-image: url("/images/carousel-1.jpg");
+    background-size: cover;
+  }
+  #carousel-2 {
+    background-image: url("/images/carousel-2.jpg");
+    background-size: cover;
+  }
+  #carousel-3 {
+    background-image: url("/images/carousel-3.jpg");
+    background-size: cover;
+  }
+  #carousel-4 {
+    background-image: url("/images/carousel-4.jpg");
+    background-size: cover;
+  }
+  #carousel-5 {
+    background-image: url("/images/carousel-5.jpg");
+    background-size: cover;
+  }
+  #carousel-6 {
+    background-image: url("/images/carousel-6.jpg");
+    background-size: cover;
+  }
+  #carousel-7 {
+    background-image: url("/images/carousel-7.jpg");
+    background-size: cover;
+  }
+  #carousel-8 {
+    background-image: url("/images/carousel-8.jpg");
+    background-size: cover;
+  }
+  #carousel-9 {
+    background-image: url("/images/carousel-9.jpg");
+    background-size: cover;
+  }
 }
 
 .pokemon-cell {
-	margin-bottom: 20px;
-	div.col.s10 {
-		font-weight: 600;
-	}
+  margin-bottom: 20px;
+  div.col.s10 {
+    font-weight: 600;
+  }
 }
 
 .artwork {
-	display: block;
-	margin: 40px auto;
+  display: block;
+  margin: 40px auto;
 }
 
 .sprite {
-	display: block;
-	margin: 50px auto;
-	margin-top: 20px;
+  display: block;
+  margin: 50px auto;
+  margin-top: 20px;
+  -webkit-user-select: none;
 }
 
 .item-name {
-	min-width: 180px;
-	font-size: 18px;
-	font-weight: 600;
-	text-transform: capitalize;
+  min-width: 180px;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: capitalize;
 }
 
 .item-picture {
-	min-width: 120px;
+  min-width: 120px;
 }
 
 .item-description {
-	min-width: 300px;
+  min-width: 300px;
 }
 
 .type {
-	display: block;
-	width: 180px;
-	height: 30px;
-	color: white;
-	text-shadow: 1px 1px grey;
-	text-transform: capitalize;
-	text-align: center;
-	border: none;
+  display: block;
+  width: 180px;
+  height: 30px;
+  color: white;
+  text-shadow: 1px 1px grey;
+  text-transform: capitalize;
+  text-align: center;
+  border: none;
 }
 
 .type-s {
-	display: block;
-	width: 100px;
-	height: 24px;
-	margin: auto;
-	color: white;
-	text-shadow: 1px 1px grey;
-	text-transform: capitalize;
-	text-align: center;
-	border: none;
+  display: block;
+  width: 100px;
+  height: 24px;
+  margin: auto;
+  color: white;
+  text-shadow: 1px 1px grey;
+  text-transform: capitalize;
+  text-align: center;
+  border: none;
 }
 
 .bug {
-	background: linear-gradient(#a8b820, #8d9a1b);
+  background: linear-gradient(#a8b820, #8d9a1b);
 }
 
 .dark {
-	background: linear-gradient(#705848, #513f34);
+  background: linear-gradient(#705848, #513f34);
 }
 
 .dragon {
-	background: linear-gradient(#7038f8, #4c08ef);
+  background: linear-gradient(#7038f8, #4c08ef);
 }
 
 .electric {
-	background: linear-gradient(#f8d030, #f0c108);
+  background: linear-gradient(#f8d030, #f0c108);
 }
 
 .fairy {
-	background: linear-gradient(#F98CFF, #F540FF);
+  background: linear-gradient(#f98cff, #f540ff);
 }
 
 .fighting {
-	background: linear-gradient(#c03028, #9d2721);
+  background: linear-gradient(#c03028, #9d2721);
 }
 
 .fire {
-	background: linear-gradient(#f08030, #dd6610);
+  background: linear-gradient(#f08030, #dd6610);
 }
 
 .flying {
-	background: linear-gradient(#a890f0, #9180c4);
+  background: linear-gradient(#a890f0, #9180c4);
 }
 
 .ghost {
-	background: linear-gradient(#705898, #554374);
+  background: linear-gradient(#705898, #554374);
 }
 
 .grass {
-	background: linear-gradient(#78c850, #5ca935);
+  background: linear-gradient(#78c850, #5ca935);
 }
 
 .ground {
-	background: linear-gradient(#e0c068, #d4a82f);
+  background: linear-gradient(#e0c068, #d4a82f);
 }
 
 .ice {
-	background: linear-gradient(#98d8d8, #69c6c6);
+  background: linear-gradient(#98d8d8, #69c6c6);
 }
 
 .normal {
-	background: linear-gradient(#a8a878, #8a8a59);
+  background: linear-gradient(#a8a878, #8a8a59);
 }
 
 .poison {
-	background: linear-gradient(#a040a0, #803380);
+  background: linear-gradient(#a040a0, #803380);
 }
 
 .psychic {
-	background: linear-gradient(#f85888, #f61c5d);
+  background: linear-gradient(#f85888, #f61c5d);
 }
 
 .rock {
-	background: linear-gradient(#b8a038, #93802d);
+  background: linear-gradient(#b8a038, #93802d);
 }
 
 .steel {
-	background: linear-gradient(#b8b8d0, #9797ba);
+  background: linear-gradient(#b8b8d0, #9797ba);
 }
 
 .water {
-	background: linear-gradient(#6890f0, #386ceb);
+  background: linear-gradient(#6890f0, #386ceb);
 }
 
 #cards {
-	.card {
-		min-height: 350px;
-		position: relative;
-	}
-	.card-action {
-		position: absolute;
-		bottom: 0;
-		left: 0;
-	}
+  .card {
+    min-height: 350px;
+    position: relative;
+  }
+  .card-action {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
 }
 
 #side-panel {
-	li a {
-		font-weight: 600;
-		font-size: 20px;
-		&:hover {
-			background-color: rgba(255, 0, 0, 0.1);
-		}
-	}
+  li a {
+    font-weight: 600;
+    font-size: 20px;
+    &:hover {
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+  }
 }
 
 #name-id {
-	h5 {
-		display: inline-block;
-	}
+  h5 {
+    display: inline-block;
+  }
 }
 
 #basic-data {
-	h3 {
-		font-weight: 600;
-	}
-	h5 {
-		margin: 30px 0;
-	}
-	span {
-		display: inline-block;
-		margin-right: 20px;
-	}
-	.col {
-		margin: 10px 0;
-	}
+  h3 {
+    font-weight: 600;
+  }
+  h5 {
+    margin: 30px 0;
+  }
+  span {
+    display: inline-block;
+    margin-right: 20px;
+  }
+  .col {
+    margin: 10px 0;
+  }
 }
 
 #game-stats {
-	h3 {
-		font-weight: 600;
-	}
-	h5 {
-		margin: 0;
-	}
-	.row img {
-		border-top-right-radius: 12px;
-		border-bottom-right-radius: 12px;
-	}
-	.col {
-		margin: 10px 0;
-	}
+  h3 {
+    font-weight: 600;
+  }
+  h5 {
+    margin: 0;
+  }
+  .row img {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  .col {
+    margin: 10px 0;
+  }
 }
 
 #move-data {
-	h3 {
-		font-weight: 600;
-	}
-	th {
-		font-size: 24px;
-	}
-	td {
-		min-width: 80px;
-	}
+  h3 {
+    font-weight: 600;
+  }
+  th {
+    font-size: 24px;
+  }
+  td {
+    min-width: 80px;
+  }
 }
