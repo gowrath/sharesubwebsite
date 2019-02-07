@@ -49,7 +49,7 @@ $(function() {
 	M.FloatingActionButton.init($floatingBtn, {
 		hoverEnabled: false
 	});
-	
+
 	// Switch generation
 	showPokemonByGeneration(1);
 	$("#generation-list").find("a").on("click", function() {

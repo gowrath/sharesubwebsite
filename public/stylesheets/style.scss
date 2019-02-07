@@ -54,6 +54,31 @@ footer {
   }
 }
 
+.gap-10 {
+  display: block;
+  height: 10px;
+}
+
+.gap-20 {
+  display: block;
+  height: 20px;
+}
+
+.gap-40 {
+  display: block;
+  height: 40px;
+}
+
+.gap-60 {
+  display: block;
+  height: 60px;
+}
+
+.gap-80 {
+  display: block;
+  height: 80px;
+}
+
 .flex-col-center {
   display: flex;
   flex-direction: column;
@@ -237,6 +262,10 @@ footer {
   background: linear-gradient(#6890f0, #386ceb);
 }
 
+.none {
+  background: linear-gradient(#555555, #444444);
+}
+
 #cards {
   .card {
     min-height: 350px;
@@ -306,5 +335,154 @@ footer {
   }
   td {
     min-width: 80px;
+  }
+}
+
+#type-symbols {
+  padding: 10px 40px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  .type-symbol-item {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    margin: 10px;
+    border-radius: 50%;
+    transition-duration: 1.2s;
+    transition-timing-function: ease-in-out;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+      transform: rotate(1turn);
+      transition-duration: 1.2s;
+      transition-timing-function: ease-in-out;
+    }
+    &.selected {
+      transition: none;
+      opacity: 1;
+    }
+  }
+  .bug {
+    background: url("/images/type-bug.png");
+    background-size: cover;
+  }
+  .dark {
+    background: url("/images/type-dark.png");
+    background-size: cover;
+  }
+  .dragon {
+    background: url("/images/type-dragon.png");
+    background-size: cover;
+  }
+  .electric {
+    background: url("/images/type-electric.png");
+    background-size: cover;
+  }
+  .fairy {
+    background: url("/images/type-fairy.png");
+    background-size: cover;
+  }
+  .fighting {
+    background: url("/images/type-fighting.png");
+    background-size: cover;
+  }
+  .fire {
+    background: url("/images/type-fire.png");
+    background-size: cover;
+  }
+  .flying {
+    background: url("/images/type-flying.png");
+    background-size: cover;
+  }
+  .ghost {
+    background: url("/images/type-ghost.png");
+    background-size: cover;
+  }
+  .grass {
+    background: url("/images/type-grass.png");
+    background-size: cover;
+  }
+  .ground {
+    background: url("/images/type-ground.png");
+    background-size: cover;
+  }
+  .ice {
+    background: url("/images/type-ice.png");
+    background-size: cover;
+  }
+  .normal {
+    background: url("/images/type-normal.png");
+    background-size: cover;
+  }
+  .poison {
+    background: url("/images/type-poison.png");
+    background-size: cover;
+  }
+  .psychic {
+    background: url("/images/type-psychic.png");
+    background-size: cover;
+  }
+  .rock {
+    background: url("/images/type-rock.png");
+    background-size: cover;
+  }
+  .steel {
+    background: url("/images/type-steel.png");
+    background-size: cover;
+  }
+  .water {
+    background: url("/images/type-water.png");
+    background-size: cover;
+  }
+}
+
+#type-info {
+  #type-content {
+    h4 {
+      font-weight: 600;
+      text-transform: uppercase;
+      background-color: #bf360c;
+      color: white;
+      height: 60px;
+      width: 50%;
+      margin: auto;
+      border-radius: 30px;
+      span {
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
+    }
+  }
+}
+
+#type-data {
+  text-align: center;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .type-data-title {
+    font-size: 1.8rem;
+    margin-top: 25px;
+  }
+  .type-data-list {
+    margin-top: 15px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+  .type-data-item {
+    display: inline-block;
+    margin: 10px;
+    min-width: 160px;
+    padding: 6px;
+    font-size: 20px;
+    border-radius: 16px;
+    text-align: center;
+    color: white;
+    text-transform: capitalize;
   }
 }

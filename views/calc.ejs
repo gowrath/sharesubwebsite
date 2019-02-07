@@ -12,6 +12,28 @@
 		<h1 class="deep-orange-text text-darken-4">
 			<%= title %>
 		</h1>
+		<p class="grey-text text-darken-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo sunt
+			cupiditate culpa tenetur placeat nobis, officia quaerat repellendus consectetur a veniam ducimus minima animi
+			accusamus facere quis at harum in?</p>
+	</section>
+	<section id="type-effect" class="container sect">
+		<h3 class="center-align deep-orange-text text-darken-4">Type Effectiveness</h3>
+		<div class="gap-10"></div>
+		<div id="type-symbols">
+			<% typeNames.forEach(function(type) { %>
+			<div class="type-symbol-item <%= type%>"></div>
+			<% }); %>
+		</div>
+		<div style="display: none;" id="type-info">
+			<div class="gap-40"></div>
+			<div id="type-content">
+			</div>
+		</div>
+	</section>
+	<div class="gap-30"></div>
+	<section id="stats-calc" class="container sect">
+		<h3 class="center-align deep-orange-text text-darken-4">Stats Calculator</h3>
+		<div class="gap-10"></div>
 	</section>
 	<!--Footer-->
 	<% include partials/footer %>
