@@ -53,7 +53,8 @@ const allTypes = [
 var renderData = {
   title: "Pokémon Calculator",
   natureNames: allNatures,
-  typeNames: allTypes
+  typeNames: allTypes,
+  statNames: ["HP", "Attack", "Defense", "Sp. Atk", "Sp. Def", "Speed"]
 };
 
 /* GET calculator page. */

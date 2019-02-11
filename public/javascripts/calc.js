@@ -363,6 +363,9 @@ const updateTypeContent = function(type) {
 var selectedType = null;
 var selectedNature = null;
 
+document.querySelector(".nature-btn").classList.add("selected");
+document.querySelector(".nature-btn").classList.add("z-depth-3");
+
 $(function() {
 	$(".type-symbol-item").on("click", function() {
 		if ($(this).hasClass("selected")) {
@@ -379,4 +382,10 @@ $(function() {
 		updateTypeContent(selectedType);
 		$("#type-info").slideDown(1500);
 	});
+
+	$(".nature-btn").on("click", function() {
+		$(this).parent().siblings().children().removeClass("selected").addClass("z-depth-1").removeClass("z-depth-3");
+		$(this).addClass("selected").removeClass("z-depth-1").addClass("z-depth-3");
+		selectedNature = $(this).attr("data-content");
+	})
 });

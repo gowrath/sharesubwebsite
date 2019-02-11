@@ -5,6 +5,10 @@ body {
   font-size: 16px;
 }
 
+a {
+  cursor: pointer;
+}
+
 nav {
   font-weight: 600;
   .brand-logo {
@@ -443,7 +447,7 @@ footer {
     h4 {
       font-weight: 600;
       text-transform: uppercase;
-      background-color: #bf360c;
+      background: linear-gradient(lighten($color: #bf360c, $amount: 5%), darken($color: #bf360c, $amount: 5%));
       color: white;
       height: 60px;
       width: 50%;
@@ -484,5 +488,67 @@ footer {
     text-align: center;
     color: white;
     text-transform: capitalize;
+  }
+}
+
+#stats-calc {
+  padding-left: 10px;
+  padding-right: 20px;
+  text-transform: capitalize;
+  h5 {
+    color: lighten($color: #bf360c, $amount: 10%);
+    font-family: "Exo";
+    font-size: 2rem;
+    text-transform: none;
+    margin-bottom: 30px;
+  }
+  .nature-btn-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 20px;
+  }
+  .nature-btn {
+    font-size: 20px;
+    display: inline-block;
+    border: 1px lighten($color: #ff9800, $amount: 10%) solid;
+    color: darken($color: #ff9800, $amount: 10%);
+    text-align: center;
+    &:hover {
+      background: linear-gradient(lighten($color: #ff9800, $amount: 5%), darken($color: #ff9800, $amount: 5%));
+      color: white;
+      transition-duration: 0.5s;
+    }
+    &.selected {
+      background: linear-gradient(lighten($color: #ff9800, $amount: 5%), darken($color: #ff9800, $amount: 5%));
+      color: white;
+      transform: skewX(-10deg);
+      transition-duration: 0.5s;
+    }
+  }
+  .stat-section {
+    width: 100%;
+    margin: 20px auto;
+    .stat-value {
+      font-size: 1.8rem;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      span {
+        display: inline-block;
+        min-width: 20%;
+      }
+    }
+    .stat-data {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-content: center;
+      div.input-field {
+        min-width: 15%;
+        margin: auto 20px;
+      }
+    }
   }
 }

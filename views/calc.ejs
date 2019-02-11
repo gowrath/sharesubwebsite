@@ -30,10 +30,49 @@
 			</div>
 		</div>
 	</section>
-	<div class="gap-30"></div>
+	<div class="gap-40"></div>
 	<section id="stats-calc" class="container sect">
 		<h3 class="center-align deep-orange-text text-darken-4">Stats Calculator</h3>
 		<div class="gap-10"></div>
+		<h5 id="nature-title">Select a Nature</h5>
+		<div class="row">
+			<% natureNames.forEach(function(nature) { %>
+			<div class="col s6 m4 l3 xl2 nature-btn-container">
+				<div class="nature-btn z-depth-1" data-content="<%= nature%>"><%= nature%></div>
+			</div>
+			<% }); %>
+		</div>
+		<div class="gap-10"></div>
+		<h5>Base Values & IVs & EVs</h5>
+		<div class="flex-col-center">
+			<% statNames.forEach(function(stat) { %>
+			<div class="stat-section">
+				<div class="stat-value"><span></span><span><%= stat%>:</span><span data-stat="<%= stat.toLowerCase()%>">0</span>
+				</div>
+				<div class="gap-20"></div>
+				<div class="stat-data">
+					<div class="input-field">
+						<input id="base-<%= stat.toLowerCase()%>" type="number" class="validate" min="0" max="500" step="1">
+						<label for="base-<%= stat.toLowerCase()%>">Base</label>
+					</div>
+					<div class="input-field">
+						<input id="iv-<%= stat.toLowerCase()%>" type="number" class="validate" min="0" max="31" step="1">
+						<label for="iv-<%= stat.toLowerCase()%>">IV</label>
+					</div>
+					<div class="input-field">
+						<input id="ev-<%= stat.toLowerCase()%>" type="number" class="validate" min="0" max="252" step="4">
+						<label for="ev-<%= stat.toLowerCase()%>">EV</label>
+					</div>
+				</div>
+			</div>
+			<% }); %>
+		</div>
+		<div class="gap-40"></div>
+		<div class="flex-row-center">
+			<button class="btn waves-effect waves-light deep-orange darken-4" type="button">Calculate
+				<i class="material-icons right">keyboard</i>
+			</button>
+		</div>
 	</section>
 	<!--Footer-->
 	<% include partials/footer %>
