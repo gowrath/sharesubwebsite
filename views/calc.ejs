@@ -34,7 +34,7 @@
 	<section id="stats-calc" class="container sect">
 		<h3 class="center-align deep-orange-text text-darken-4">Stats Calculator</h3>
 		<div class="gap-10"></div>
-		<h5 id="nature-title">Select a Nature</h5>
+		<h5 id="nature-title">Choose a Nature</h5>
 		<div class="row">
 			<% natureNames.forEach(function(nature) { %>
 			<div class="col s6 m4 l3 xl2 nature-btn-container">
@@ -42,37 +42,61 @@
 			</div>
 			<% }); %>
 		</div>
-		<div class="gap-10"></div>
+		<div class="gap-20"></div>
+		<h5>Set Pokémon Level</h5>
+		<div id="level-display" class="center-align">Level: <span>51</span></div>
+		<div class="range-field">
+			<input type="range" id="level" min="1" max="100" />
+		</div>
+		<div class="gap-40"></div>
 		<h5>Base Values & IVs & EVs</h5>
 		<div class="flex-col-center">
 			<% statNames.forEach(function(stat) { %>
 			<div class="stat-section">
-				<div class="stat-value"><span></span><span><%= stat%>:</span><span data-stat="<%= stat.toLowerCase()%>">0</span>
+				<div class="stat-value"><span></span><span><%= stat%>:</span><span class="stat-display"
+						data-stat="<%= stat.toLowerCase().replace('. ', '')%>">0</span>
 				</div>
 				<div class="gap-20"></div>
 				<div class="stat-data">
 					<div class="input-field">
-						<input id="base-<%= stat.toLowerCase()%>" type="number" class="validate" min="0" max="500" step="1">
-						<label for="base-<%= stat.toLowerCase()%>">Base</label>
+						<input id="base-<%= stat.toLowerCase().replace('. ', '')%>" type="number" class="validate base-field"
+							min="0" max="500" step="1">
+						<label for="base-<%= stat.toLowerCase().replace('. ', '')%>">Base</label>
 					</div>
 					<div class="input-field">
-						<input id="iv-<%= stat.toLowerCase()%>" type="number" class="validate" min="0" max="31" step="1">
-						<label for="iv-<%= stat.toLowerCase()%>">IV</label>
+						<input id="iv-<%= stat.toLowerCase().replace('. ', '')%>" type="number" class="validate iv-field" min="0"
+							max="31" step="1">
+						<label for="iv-<%= stat.toLowerCase().replace('. ', '')%>">IV</label>
 					</div>
 					<div class="input-field">
-						<input id="ev-<%= stat.toLowerCase()%>" type="number" class="validate" min="0" max="252" step="4">
-						<label for="ev-<%= stat.toLowerCase()%>">EV</label>
+						<input id="ev-<%= stat.toLowerCase().replace('. ', '')%>" type="number" class="validate ev-field" min="0"
+							max="252" step="4">
+						<label for="ev-<%= stat.toLowerCase().replace('. ', '')%>">EV</label>
 					</div>
 				</div>
 			</div>
 			<% }); %>
 		</div>
-		<div class="gap-40"></div>
-		<div class="flex-row-center">
-			<button class="btn waves-effect waves-light deep-orange darken-4" type="button">Calculate
-				<i class="material-icons right">keyboard</i>
+		<div class="gap-20"></div>
+		<div class="stat-btn-group">
+			<button id="clear-stats" class="btn waves-effect waves-light teal darken-1 stat-btn" type="button">Clear<i
+					class="material-icons right">delete_sweep</i>
+			</button>
+			<button id="max-ivs" class="btn waves-effect waves-light orange darken-2 stat-btn" type="button">Max IVs<i
+					class="material-icons right">arrow_upward</i>
+			</button>
+			<button id="max-evs" class="btn waves-effect waves-light orange darken-2 stat-btn" type="button">Max EVs<i
+					class="material-icons right">arrow_upward</i>
+			</button>
+			<button id="calc-stats" class="btn waves-effect waves-light deep-orange darken-4 stat-btn"
+				type="button">Calculate<i class="material-icons right">keyboard</i>
 			</button>
 		</div>
+	</section>
+	<div class="gap-40"></div>
+	<section id="dmg-calc" class="container sect">
+		<h3 class="center-align deep-orange-text text-darken-4">Damage Calculator</h3>
+		<div class="gap-10"></div>
 	</section>
 	<!--Footer-->
 	<% include partials/footer %>

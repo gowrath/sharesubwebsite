@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   box-sizing: border-box;
   font-family: "Montserrat", "Raleway", "Inknut Antiqua", "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -510,6 +514,7 @@ footer {
     margin-bottom: 20px;
   }
   .nature-btn {
+    cursor: pointer;
     font-size: 20px;
     display: inline-block;
     border: 1px lighten($color: #ff9800, $amount: 10%) solid;
@@ -551,4 +556,20 @@ footer {
       }
     }
   }
+  .stat-btn-group {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: center;
+    .stat-btn {
+      margin: 20px;
+      text-transform: none;
+      font-size: 18px;
+    }
+  }
+}
+
+#level-display {
+  font-size: 2rem;
+  margin-bottom: 10px;
 }

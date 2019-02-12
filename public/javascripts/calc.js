@@ -270,7 +270,7 @@ const generateTypeItem = function(type) {
 	let $typeItem = $(`<div class="type-data-item ${type}"></div>`);
 	$typeItem.html(`${type}`);
 	return $typeItem;
-}
+};
 
 const updateTypeContent = function(type) {
 	let $content = $("#type-content");
@@ -360,8 +360,73 @@ const updateTypeContent = function(type) {
 	}
 };
 
+const hpFormula = function(level, bv, iv, ev) {
+	return Math.floor(
+		((2 * bv + iv + ev / 4) * level) / 100 + level + 10
+	);
+};
+
+const nonHpFormula = function(level, bv, iv, ev, nature = 1) {
+	return Math.floor(
+		nature * Math.floor(
+			((2 * bv + iv + ev / 4) * level) / 100 + 5
+		)
+	);
+};
+
+const calculateStats = function() {
+	$(".ev-field").each(function() {
+		let $evField = $(this);
+		if ($evField.val() % 4 != 0) {
+			$evField.val(Math.floor($evField.val() / 4) * 4);
+			if (($evField.val() >= 0) && ($evField.val() <= 252)) {
+				$evField.removeClass("invalid").addClass("valid");
+			}
+		}
+	});
+	let $statFields = $(".stat-value");
+	$statFields.each(function(index, statField) {
+		let valid = true;
+		let $statDisplay = $(statField).find(".stat-display");
+		let statName = $statDisplay.attr("data-stat");
+		$(statField).parent().find(".validate").each(function() {
+			if (!$(this).hasClass("valid")) {
+				$(this).addClass("invalid");
+				valid = false;
+			} else {
+				$(this).removeClass("invalid");
+			}
+		});
+		let baseId = `base-${statName}`;
+		let bv = parseInt($(`#${baseId}`).val());
+		let ivId = `iv-${statName}`;
+		let iv = parseInt($(`#${ivId}`).val());
+		let evId = `ev-${statName}`;
+		let ev = parseInt($(`#${evId}`).val());
+		if (valid) {
+			let statResult;
+			if (statName === "hp") {
+				statResult = hpFormula(selectedLevel, bv, iv, ev);
+			} else {
+				let nature = parseFloat(naturesData[selectedNature][index - 1]);
+				statResult = nonHpFormula(selectedLevel, bv, iv, ev, nature);
+			}
+			$statDisplay.html(`${statResult}`);
+		} else {
+			$statDisplay.html(0);
+		}
+	});
+};
+
+const clearStats = function() {
+	$(".stat-display").html(0);
+	$(".stat-data").find("input").removeClass("valid").removeClass("invalid").val(null);
+	$(".stat-data").find("label").removeClass("active");
+};
+
 var selectedType = null;
-var selectedNature = null;
+var selectedNature = "hardy";
+var selectedLevel = 51;
 
 document.querySelector(".nature-btn").classList.add("selected");
 document.querySelector(".nature-btn").classList.add("z-depth-3");
@@ -387,5 +452,26 @@ $(function() {
 		$(this).parent().siblings().children().removeClass("selected").addClass("z-depth-1").removeClass("z-depth-3");
 		$(this).addClass("selected").removeClass("z-depth-1").addClass("z-depth-3");
 		selectedNature = $(this).attr("data-content");
-	})
+	});
+
+	$("#level").on("change", function() {
+		let level = parseInt($(this).val());
+		selectedLevel = level;
+		$("#level-display").find("span").html(level);
+	});
+	$("#max-ivs").on("click", function() {
+		$(".iv-field").val(31).addClass("valid").siblings().addClass("active");
+	});
+	$("#max-evs").on("click", function() {
+		$(".ev-field").val(252).addClass("valid").siblings().addClass("active");
+	});
+	$("#calc-stats")
+		.on("click", calculateStats)
+		.on("mouseenter", function() {
+			$(this).addClass("pulse");
+		})
+		.on("mouseleave", function() {
+			$(this).removeClass("pulse");
+		});
+	$("#clear-stats").on("click", clearStats);
 });
