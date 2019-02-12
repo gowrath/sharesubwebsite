@@ -97,6 +97,31 @@
 	<section id="dmg-calc" class="container sect">
 		<h3 class="center-align deep-orange-text text-darken-4">Damage Calculator</h3>
 		<div class="gap-10"></div>
+		<div id="data-grid" class="row">
+			<div class="col s12 m12 l6 xl6">
+				<h4>Offense</h4>
+				<div class="category-box">
+					<h5>Metrics</h5>
+					<div class="input-field">
+						<input id="dmg-level" type="number" class="validate" step="1" min="1" max="100" required>
+						<label for="dmg-level">Level <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a number from 1-100">Level of the pokémon on offense</span>
+					</div>
+					<div class="input-field">
+						<input id="eff-atk" type="number" class="validate" step="1" min="4" max="999" required>
+						<label for="eff-atk">Effective Attack <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a valid attack stat value">The attack or sp. atk without
+							buff</span>
+					</div>
+				</div>
+			</div>
+			<div class="col s12 m12 l6 xl6">
+				<h4>Defense</h4>
+				<div class="category-box">
+					<h5>Metrics</h5>
+				</div>
+			</div>
+		</div>
 	</section>
 	<!--Footer-->
 	<% include partials/footer %>

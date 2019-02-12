@@ -1,3 +1,11 @@
+$desktop-width: 993px;
+
+@mixin tablet {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -562,6 +570,7 @@ footer {
     justify-content: center;
     align-content: center;
     .stat-btn {
+      min-width: 12rem;
       margin: 20px;
       text-transform: none;
       font-size: 18px;
@@ -572,4 +581,83 @@ footer {
 #level-display {
   font-size: 2rem;
   margin-bottom: 10px;
+}
+
+#data-grid {
+  min-height: 80vh;
+  h4 {
+    margin-bottom: 30px;
+  }
+  div {
+    .category-box {
+      display: flex;
+      flex-direction: column;
+      .input-field {
+        width: 70%;
+        @include tablet {
+          margin-left: auto;
+          margin-right: auto;
+          width: 50%;
+        }
+      }
+      input ~ span,
+      input ~ label {
+        font-size: 14px;
+      }
+    }
+    &:first-child {
+      h4 {
+        color: lighten($color: #bf360c, $amount: 10%);
+        text-align: left;
+        font-family: "Titillium Web", "Segoe UI", Tahoma, Verdana, sans-serif;
+        @include tablet {
+          margin-top: 20px;
+          text-align: center;
+        }
+      }
+      .category-box {
+        padding-left: 15px;
+        justify-content: left;
+        align-content: center;
+        @include tablet {
+          padding-left: 0;
+        }
+        h5 {
+          display: inline-block;
+          margin-right: auto;
+          @include tablet {
+            margin: auto;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+    &:last-child {
+      h4 {
+        color: lighten($color: #bf360c, $amount: 10%);
+        text-align: right;
+        font-family: "Titillium Web", "Segoe UI", Tahoma, Verdana, sans-serif;
+        @include tablet {
+          margin-top: 40px;
+          text-align: center;
+        }
+      }
+      .category-box {
+        padding-right: 15px;
+        justify-content: center;
+        align-content: center;
+        @include tablet {
+          padding-right: 0;
+        }
+        h5 {
+          display: inline-block;
+          margin-left: auto;
+          @include tablet {
+            margin: auto;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+  }
 }

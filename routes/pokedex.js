@@ -22,7 +22,7 @@ router.get("/", function(req, res, next) {
 				pokemon["id"] = url.substring(url.indexOf("pokemon") + 8, url.length - 1).padStart(3, "0");
 				pokemonList.push(pokemon);
 			}
-			renderDexData.pokemonList = pokemonList.slice(0, pokemonList.length - 147);
+			renderDexData.pokemonList = pokemonList.slice(0, pokemonList.length - 162);
 			res.render("pokedex", renderDexData);
 		})
 		.catch(function(error) {

@@ -474,4 +474,6 @@ $(function() {
 			$(this).removeClass("pulse");
 		});
 	$("#clear-stats").on("click", clearStats);
+
+	$('select').formSelect();
 });
