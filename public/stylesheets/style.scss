@@ -6,6 +6,11 @@ $desktop-width: 993px;
   }
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: inner-spin-button !important;
+}
+
 * {
   box-sizing: border-box;
 }
