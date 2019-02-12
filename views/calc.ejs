@@ -98,6 +98,7 @@
 		<h3 class="center-align deep-orange-text text-darken-4">Damage Calculator</h3>
 		<div class="gap-10"></div>
 		<div id="data-grid" class="row">
+			<!--Offense-->
 			<div class="col s12 m12 l6 xl6">
 				<h4>Offense</h4>
 				<div class="category-box">
@@ -113,12 +114,69 @@
 						<span class="helper-text" data-error="Enter a valid attack stat value">The attack or sp. atk without
 							buff</span>
 					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="mv-type-1">
+							<option value="" disabled selected>???</option>
+							<% typeNames.forEach(function(type) { %>
+							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
+							<% }); %>
+						</select>
+						<label style="font-size: 14px;">Move Type 1 <span class="star red-text">*</span></label>
+						<span style="font-size: 14px;" class="helper-text">The first type of the move</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="mv-type-2">
+							<option value="" disabled selected>???</option>
+							<% typeNames.forEach(function(type) { %>
+							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
+							<% }); %>
+						</select>
+						<label style="font-size: 14px;">Move Type 2</label>
+						<span style="font-size: 14px;" class="helper-text">The second type if applicable</span>
+					</div>
+					<div class="input-field">
+						<input id="power" type="number" class="validate" step="1" min="1" max="500" required>
+						<label for="power">Move Power <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a valid power value">Power of the attacking move</span>
+					</div>
 				</div>
 			</div>
+			<!--Defense-->
 			<div class="col s12 m12 l6 xl6">
 				<h4>Defense</h4>
 				<div class="category-box">
 					<h5>Metrics</h5>
+					<div class="input-field">
+						<input id="eff-hp" type="number" class="validate" step="1" min="11" max="999" required>
+						<label for="eff-hp">Full HP <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a valid hp stat value">The hp at 100%</span>
+					</div>
+					<div class="input-field">
+						<input id="eff-def" type="number" class="validate" step="1" min="4" max="999" required>
+						<label for="eff-def">Effective Defense <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a valid defense stat value">The defense or sp. def without
+							buff</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="pk-type-1">
+							<option value="" disabled selected>???</option>
+							<% typeNames.forEach(function(type) { %>
+							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
+							<% }); %>
+						</select>
+						<label style="font-size: 14px;">Defense Type 1 <span class="star red-text">*</span></label>
+						<span style="font-size: 14px;" class="helper-text">The first type of the defensive pokémon</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="pk-type-2">
+							<option value="" disabled selected>???</option>
+							<% typeNames.forEach(function(type) { %>
+							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
+							<% }); %>
+						</select>
+						<label style="font-size: 14px;">Defense Type 2</label>
+						<span style="font-size: 14px;" class="helper-text">The second type if applicable</span>
+					</div>
 				</div>
 			</div>
 		</div>
