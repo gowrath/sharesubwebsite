@@ -1,3 +1,4 @@
+// Variable presets
 $desktop-width: 993px;
 
 @mixin tablet {
@@ -6,11 +7,43 @@ $desktop-width: 993px;
   }
 }
 
+// Materialize CSS form input
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: inner-spin-button !important;
 }
 
+.input-field input[type="number"]:focus + label {
+  color: #666666 !important;
+}
+
+.input-field input[type="number"]:focus {
+  border-bottom: 1px solid #888888 !important;
+  box-shadow: 0 1px 0 0 #888888 !important;
+}
+
+input.select-dropdown:focus {
+  border-bottom: 1px solid #4caf50 !important;
+}
+
+.dropdown-content li > span {
+  color: #bf360c !important;
+}
+
+[type="checkbox"]:checked + span:not(.lever):before {
+  border-right: 2px solid #bf360c !important;
+  border-bottom: 2px solid #bf360c !important;
+}
+
+input[type="range"] + .thumb {
+  background-color: #bf360c;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background-color: #bf360c;
+}
+
+// General
 * {
   box-sizing: border-box;
 }
@@ -688,6 +721,48 @@ footer {
           }
         }
       }
+    }
+  }
+}
+
+#dmg-btn-group {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-content: center;
+  .dmg-btn {
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+    min-width: 14rem;
+    text-transform: capitalize;
+    font-size: 18px;
+  }
+}
+
+#eva-sect {
+  margin-top: 60px;
+  #eva-head {
+    font-weight: 400;
+    text-transform: capitalize;
+    color: #ef440f;
+    border-bottom: #ef440f 2px solid;
+    height: 50px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    span {
+      display: block;
+      text-align: center;
+      width: 100%;
+    }
+  }
+  h5 {
+    margin-bottom: 30px;
+    .eva-value {
+      color: #bf360c;
+      font-weight: 500;
     }
   }
 }

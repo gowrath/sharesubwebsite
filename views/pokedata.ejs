@@ -28,11 +28,13 @@
     <div class="row">
       <div class="col s12 m1 l2 hide-on-small-only"></div>
       <div class="col s12 m5 l4">
-        <a id="prev" style="min-width: 160px;" class="waves-effect waves-light btn pink lighten-1"><i class="material-icons left">navigate_before</i>Prev.</a>
+        <a id="prev" style="min-width: 160px;" class="waves-effect waves-light btn pink lighten-1"><i
+            class="material-icons left">navigate_before</i>Prev.</a>
       </div>
       <div class="col s12 hide-on-med-and-up" style="height: 20px;"></div>
       <div class="col s12 m5 l4">
-        <a id="next" style="min-width: 160px;" class="waves-effect waves-light btn pink lighten-1"><i class="material-icons right">navigate_next</i>Next</a>
+        <a id="next" style="min-width: 160px;" class="waves-effect waves-light btn pink lighten-1"><i
+            class="material-icons right">navigate_next</i>Next</a>
       </div>
       <div class="col s12 m1 l2 hide-on-small-only"></div>
     </div>
@@ -134,49 +136,54 @@
         <div class="col s12 m1 l1"><span>
             <%= statList.hp %></span></div>
         <div class="col s0 m1 l1 hide-on-small-only"></div>
-        <div class="col s12 m8 l8"><img src="/images/stat1.png" alt="stat1" width="<%= statList.hp * 3 %>" height="24px"></div>
+        <div class="col s12 m8 l8"><img src="/images/stat1.png" alt="stat1" width="<%= statList.hp * 3 %>"
+            height="24px"></div>
       </h5>
       <h5 class="row">
         <div class="col s12 m12 l2">Attack:</div>
         <div class="col s12 m1 l1"><span>
             <%= statList.attack %></span></div>
         <div class="col s0 m1 l1 hide-on-small-only"></div>
-        <div class="col s12 m8 l8"><img src="/images/stat2.png" alt="stat2" width="<%= statList.attack * 3 %>" height="24px"></div>
+        <div class="col s12 m8 l8"><img src="/images/stat2.png" alt="stat2" width="<%= statList.attack * 3 %>"
+            height="24px"></div>
       </h5>
       <h5 class="row">
         <div class="col s12 m12 l2">Defense:</div>
         <div class="col s12 m1 l1"><span>
             <%= statList.defense %></span></div>
         <div class="col s0 m1 l1 hide-on-small-only"></div>
-        <div class="col s12 m8 l8"><img src="/images/stat3.png" alt="stat3" width="<%= statList.defense * 3 %>" height="24px"></div>
+        <div class="col s12 m8 l8"><img src="/images/stat3.png" alt="stat3" width="<%= statList.defense * 3 %>"
+            height="24px"></div>
       </h5>
       <h5 class="row">
         <div class="col s12 m12 l2">Sp. Atk:</div>
         <div class="col s12 m1 l1"><span>
             <%= statList["special-attack"] %></span></div>
         <div class="col s0 m1 l1 hide-on-small-only"></div>
-        <div class="col s12 m8 l8"><img src="/images/stat4.png" alt="stat4" width="<%= statList['special-attack'] * 3 %>"
-            height="24px"></div>
+        <div class="col s12 m8 l8"><img src="/images/stat4.png" alt="stat4"
+            width="<%= statList['special-attack'] * 3 %>" height="24px"></div>
       </h5>
       <h5 class="row">
         <div class="col s12 m12 l2">Sp. Def:</div>
         <div class="col s12 m1 l1"><span>
             <%= statList["special-defense"] %></span></div>
         <div class="col s0 m1 l1 hide-on-small-only"></div>
-        <div class="col s12 m8 l8"><img src="/images/stat5.png" alt="stat5" width="<%= statList['special-defense'] * 3 %>"
-            height="24px"></div>
+        <div class="col s12 m8 l8"><img src="/images/stat5.png" alt="stat5"
+            width="<%= statList['special-defense'] * 3 %>" height="24px"></div>
       </h5>
       <h5 class="row">
         <div class="col s12 m12 l2">Speed:</div>
         <div class="col s12 m1 l1"><span>
             <%= statList.speed %></span></div>
         <div class="col s0 m1 l1 hide-on-small-only"></div>
-        <div class="col s12 m8 l8"><img src="/images/stat6.png" alt="stat6" width="<%= statList.speed * 3 %>" height="24px"></div>
+        <div class="col s12 m8 l8"><img src="/images/stat6.png" alt="stat6" width="<%= statList.speed * 3 %>"
+            height="24px"></div>
       </h5>
       <h5 class="row bold">
         <div class="col s12 m12 l2">Total:</div>
         <div class="col s12 m1 l1"><span>
-            <%= statList.speed + statList["special-defense"] + statList.hp + statList.attack + statList.defense + statList["special-attack"] %></span></div>
+            <%= statList.speed + statList["special-defense"] + statList.hp + statList.attack + statList.defense + statList["special-attack"] %></span>
+        </div>
       </h5>
     </div>
   </section>
@@ -230,6 +237,7 @@
       </table>
     </div>
   </section>
+  <div class="gap-20"></div>
   <!--Footer-->
   <% include partials/footer %>
   <!--Scripts-->

@@ -114,30 +114,29 @@
 						<span class="helper-text" data-error="Enter a valid attack stat value">The attack or sp. atk without
 							buff</span>
 					</div>
-					<div class="input-field drop">
-						<select class="custom-select" id="mv-type-1">
-							<option value="" disabled selected>???</option>
-							<% typeNames.forEach(function(type) { %>
-							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
-							<% }); %>
-						</select>
-						<label style="font-size: 14px;">Move Type 1 <span class="star red-text">*</span></label>
-						<span style="font-size: 14px;" class="helper-text">The first type of the move</span>
-					</div>
-					<div class="input-field drop">
-						<select class="custom-select" id="mv-type-2">
-							<option value="" disabled selected>???</option>
-							<% typeNames.forEach(function(type) { %>
-							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
-							<% }); %>
-						</select>
-						<label style="font-size: 14px;">Move Type 2</label>
-						<span style="font-size: 14px;" class="helper-text">The second type if applicable</span>
-					</div>
 					<div class="input-field">
 						<input id="power" type="number" class="validate" step="1" min="1" max="500" required>
 						<label for="power">Move Power <span class="star red-text">*</span></label>
 						<span class="helper-text" data-error="Enter a valid power value">Power of the attacking move</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="mv-type">
+							<option value="" disabled selected>???</option>
+							<% typeNames.forEach(function(type) { %>
+							<option value="<%= type%>"><%= type.toUpperCase().substring(0, 1) + type.substring(1)%></option>
+							<% }); %>
+						</select>
+						<label style="font-size: 14px;">Move Type <span class="star red-text">*</span></label>
+						<span style="font-size: 14px;" class="helper-text">Type of the attacking move</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="dmg-type" required>
+							<option value="" disabled selected>???</option>
+							<option value="physical">Physical</option>
+							<option value="special">Special</option>
+						</select>
+						<label style="font-size: 14px;">Damage Type <span class="star red-text">*</span></label>
+						<span style="font-size: 14px;" class="helper-text">Category of the move used</span>
 					</div>
 					<!--Offense Modifiers-->
 					<h5>Modifiers</h5>
@@ -150,20 +149,14 @@
 					</div>
 					<div class="other-field box">
 						<label>
+							<input id="z-move" type="checkbox" />
+							<span>Using Z-Move</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
 							<input id="burnt" type="checkbox" />
 							<span>Being burnt</span>
-						</label>
-					</div>
-					<div class="other-field box">
-						<label>
-							<input id="flash-fire" type="checkbox" />
-							<span>Flash Fire activated</span>
-						</label>
-					</div>
-					<div class="other-field box">
-						<label>
-							<input id="helping-hand" type="checkbox" />
-							<span>Received Helping Hand</span>
 						</label>
 					</div>
 					<div class="other-field box">
@@ -206,6 +199,33 @@
 					<div class="input-field drop">
 						<select class="custom-select" id="atk-ability">
 							<option value="none" selected>None</option>
+							<option value="mode-b">Mold Breaker</option>
+							<option value="mode-b">Teravolt</option>
+							<option value="mode-b">Turboblaze</option>
+							<option value="adaptability">Adaptability</option>
+							<option value="aerilate">Aerilate</option>
+							<option value="dark-aura">Dark Aura</option>
+							<option value="fairy-aura">Fairy Aura</option>
+							<option value="galvanize">Galvanize</option>
+							<option value="guts">Guts</option>
+							<option value="double-atk">Huge Power</option>
+							<option value="double-atk">Pure Power</option>
+							<option value="hustle">Hustle</option>
+							<option value="infiltrator">Infiltrator</option>
+							<option value="neuroforce">Neuroforce</option>
+							<option value="normalize">Normalize</option>
+							<option value="parental-bond">Parental Bond</option>
+							<option value="pixilate">Pixilate</option>
+							<option value="protean">Protean</option>
+							<option value="refrigerate">Refrigerate</option>
+							<option value="sand-force">Sand Force</option>
+							<option value="scrappy">Scrappy</option>
+							<option value="sniper">Sniper</option>
+							<option value="solar-power">Solar Power</option>
+							<option value="steelworker">Steelworker</option>
+							<option value="technician">Technician</option>
+							<option value="unaware">Unaware</option>
+							<option value="tinted-lens">Tinted Lens</option>
 						</select>
 						<label style="font-size: 14px;">Offensive Ability</label>
 						<span style="font-size: 14px;" class="helper-text">Ability that increases damage</span>
@@ -213,6 +233,16 @@
 					<div class="input-field drop">
 						<select class="custom-select" id="atk-item">
 							<option value="none" selected>None</option>
+							<option value="choice-band">Choice Band</option>
+							<option value="choice-specs">Choice Specs</option>
+							<option value="muscle-band">Muscle Band</option>
+							<option value="wise-glasses">Wise Glasses</option>
+							<option value="expert-belt">Expert Belt</option>
+							<option value="life-orb">Life Orb</option>
+							<option value="m2">Metronome Twice</option>
+							<option value="m3">Metronome 3 Times</option>
+							<option value="m4">Metronome 4 Times</option>
+							<option value="m5">Metronome 5 Times</option>
 						</select>
 						<label style="font-size: 14px;">Offensive Item</label>
 						<span style="font-size: 14px;" class="helper-text">Item that increases damage</span>
@@ -220,9 +250,33 @@
 					<div class="input-field drop">
 						<select class="custom-select" id="weather">
 							<option value="none" selected>None</option>
+							<option value="sunlight">Harsh Sunlight</option>
+							<option value="ex-sunlight">Extremely Harsh Sunlight</option>
+							<option value="rain">Rain</option>
+							<option value="ex-rain">Heavy Rain</option>
+							<option value="sandstorm">Sandstorm</option>
+							<option value="hail">Hail</option>
+							<option value="strong-winds">Strong Winds</option>
 						</select>
 						<label style="font-size: 14px;">Weather Condition</label>
 						<span style="font-size: 14px;" class="helper-text">Current weather of the battlefield</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="custom-mod">
+							<option value="0.25">0.25×</option>
+							<option value="0.5">0.5×</option>
+							<option value="0.75">0.75×</option>
+							<option value="1" selected>1.0×</option>
+							<option value="1.2">1.2×</option>
+							<option value="1.3">1.3×</option>
+							<option value="1.5">1.5×</option>
+							<option value="2">2.0×</option>
+							<option value="3">3.0×</option>
+							<option value="4">4.0×</option>
+							<option value="5">5.0×</option>
+						</select>
+						<label style="font-size: 14px;">Custom Modifier</label>
+						<span style="font-size: 14px;" class="helper-text">Additional modifier you want to apply</span>
 					</div>
 				</div>
 			</div>
@@ -241,6 +295,11 @@
 						<label for="eff-def">Effective Defense <span class="star red-text">*</span></label>
 						<span class="helper-text" data-error="Enter a valid defense stat value">The defense or sp. def without
 							buff</span>
+					</div>
+					<div class="input-field">
+						<input id="full-hp" type="number" class="validate" step="1" min="1" max="999" required>
+						<label for="full-hp">Full HP <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a valid hp stat value">The HP at 100%</span>
 					</div>
 					<div class="input-field drop">
 						<select class="custom-select" id="pk-type-1">
@@ -262,11 +321,6 @@
 						<label style="font-size: 14px;">Defense Type 2</label>
 						<span style="font-size: 14px;" class="helper-text">The second type if applicable</span>
 					</div>
-					<div style="visibility: hidden;" class="input-field">
-						<input type="number">
-						<label></label>
-						<span class="helper-text"></span>
-					</div>
 					<!--Defense Modifiers-->
 					<h5>Modifiers</h5>
 					<div class="gap-20"></div>
@@ -286,6 +340,18 @@
 						<label>
 							<input id="hp-full" type="checkbox" checked />
 							<span>Having full HP</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="protect" type="checkbox" />
+							<span>Under Protect</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="endure" type="checkbox" />
+							<span>Using Endure</span>
 						</label>
 					</div>
 					<div class="other-field box">
@@ -314,16 +380,6 @@
 						<span style="font-size: 14px;" class="helper-text">Any buff or debuff to the defense stat</span>
 					</div>
 					<div class="input-field drop">
-						<select class="custom-select" id="def-screen">
-							<option value="none" selected>None</option>
-							<option value="reflect">Reflect</option>
-							<option value="light-screen">Light Screen</option>
-							<option value="aurora-veil">Aurora Veil</option>
-						</select>
-						<label style="font-size: 14px;">Defensive Screen</label>
-						<span style="font-size: 14px;" class="helper-text">Reflect, Light Screen, or Aurora Veil</span>
-					</div>
-					<div class="input-field drop">
 						<select class="custom-select" id="def-ability">
 							<option value="none" selected>None</option>
 							<option value="fur-coat">Fur Coat</option>
@@ -345,10 +401,12 @@
 							<option value="marvel-scale">Marvel Scale</option>
 							<option value="sturdy">Sturdy</option>
 							<option value="thick-fat">Thick Fat</option>
+							<option value="heatproof">Heatproof</option>
 							<option value="unaware">Unaware</option>
 							<option value="wonder-guard">Wonder Guard</option>
 							<option value="no-grass">Sap Sipper</option>
 							<option value="water-bubble">Water Bubble</option>
+							<option value="aura-break">Aura Break</option>
 						</select>
 						<label style="font-size: 14px;">Defensive Ability</label>
 						<span style="font-size: 14px;" class="helper-text">Ability that reduces damage</span>
@@ -366,12 +424,52 @@
 					<div class="input-field drop">
 						<select class="custom-select" id="field">
 							<option value="none" selected>None</option>
+							<option value="electric">Electric Terrain</option>
+							<option value="grassy">Grassy Terrain</option>
+							<option value="misty">Misty Terrain</option>
+							<option value="psychic">Psychic Terrain</option>
+							<option value="gravity">Gravity</option>
 						</select>
 						<label style="font-size: 14px;">Field Type</label>
 						<span style="font-size: 14px;" class="helper-text">Current terrain type of the battlefield</span>
 					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="def-screen">
+							<option value="none" selected>None</option>
+							<option value="reflect">Reflect</option>
+							<option value="light-screen">Light Screen</option>
+							<option value="aurora-veil">Aurora Veil</option>
+						</select>
+						<label style="font-size: 14px;">Defensive Screen</label>
+						<span style="font-size: 14px;" class="helper-text">Reflect, Light Screen, or Aurora Veil</span>
+					</div>
 				</div>
 			</div>
+		</div>
+		<div class="gap-40"></div>
+		<div id="dmg-btn-group">
+			<button id="clear-dmg" class="btn waves-effect waves-light teal darken-1 dmg-btn" type="button">Clear<i
+					class="material-icons right">delete_sweep</i>
+			</button>
+			<button id="calc-dmg" class="btn waves-effect waves-light deep-orange darken-4 dmg-btn" type="button">Evaluate<i
+					class="material-icons right">assessment</i>
+			</button>
+		</div>
+		<div id="eva-sect">
+			<h4 id="eva-head" class="valign-wrapper"><span>Result</span></h4>
+			<h5 class="row"><span class="col s1 m2"></span><span class="eva-title col s8 m6">Type
+					Effectiveness:</span><span id="type-value" class="eva-value col s3 m4">4.0×</span>
+			</h5>
+			<h5 class="row"><span class="col s1 m2"></span><span class="eva-title col s8 m6">Damage Percentage
+					Range:</span><span class="eva-value col s3 m4"><span id="min-percent">60</span>% -
+					<span id="max-percent">80</span>%</span></h5>
+			<h5 class="row"><span class="col s1 m2"></span><span id="min-value" class="eva-title col s8 m6">Damage Value
+					Range:</span><span class="eva-value col s3 m4"><span id="max-value">130</span> -
+					<span>160</span></span></h5>
+			<h5 class="row" style="margin-bottom: 0;"><span class="col s1 m2"></span><span class="eva-title col s8 m6">Target
+					Remaining HP Range:</span><span class="eva-value col s3 m4"><span id="min-remain">25</span> -
+					<span id="max-remain">55</span></span></h5>
+			<div class="gap-20"></div>
 		</div>
 	</section>
 	<!--Footer-->
