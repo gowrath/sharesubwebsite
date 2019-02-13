@@ -139,6 +139,91 @@
 						<label for="power">Move Power <span class="star red-text">*</span></label>
 						<span class="helper-text" data-error="Enter a valid power value">Power of the attacking move</span>
 					</div>
+					<!--Offense Modifiers-->
+					<h5>Modifiers</h5>
+					<div class="gap-20"></div>
+					<div class="other-field box">
+						<label>
+							<input id="crit" type="checkbox" />
+							<span>Critical hit</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="burnt" type="checkbox" />
+							<span>Being burnt</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="flash-fire" type="checkbox" />
+							<span>Flash Fire activated</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="helping-hand" type="checkbox" />
+							<span>Received Helping Hand</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="foresignt" type="checkbox" />
+							<span>Used Foresight</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="miracle-eye" type="checkbox" />
+							<span>Used Miracle Eye</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="type-buff-item" type="checkbox" />
+							<span>Holding a type-enhancing item</span>
+						</label>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="atk-buff">
+							<option value="-6">-6</option>
+							<option value="-5">-5</option>
+							<option value="-4">-4</option>
+							<option value="-3">-3</option>
+							<option value="-2">-2</option>
+							<option value="-1">-1</option>
+							<option value="0" selected>0</option>
+							<option value="1">+1</option>
+							<option value="2">+2</option>
+							<option value="3">+3</option>
+							<option value="4">+4</option>
+							<option value="5">+5</option>
+							<option value="6">+6</option>
+						</select>
+						<label style="font-size: 14px;">Attack stat change</label>
+						<span style="font-size: 14px;" class="helper-text">Any buff or debuff to the attack stat</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="atk-ability">
+							<option value="none" selected>None</option>
+						</select>
+						<label style="font-size: 14px;">Offensive Ability</label>
+						<span style="font-size: 14px;" class="helper-text">Ability that increases damage</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="atk-item">
+							<option value="none" selected>None</option>
+						</select>
+						<label style="font-size: 14px;">Offensive Item</label>
+						<span style="font-size: 14px;" class="helper-text">Item that increases damage</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="weather">
+							<option value="none" selected>None</option>
+						</select>
+						<label style="font-size: 14px;">Weather Condition</label>
+						<span style="font-size: 14px;" class="helper-text">Current weather of the battlefield</span>
+					</div>
 				</div>
 			</div>
 			<!--Defense-->
@@ -147,9 +232,9 @@
 				<div class="category-box">
 					<h5>Metrics</h5>
 					<div class="input-field">
-						<input id="eff-hp" type="number" class="validate" step="1" min="11" max="999" required>
-						<label for="eff-hp">Full HP <span class="star red-text">*</span></label>
-						<span class="helper-text" data-error="Enter a valid hp stat value">The hp at 100%</span>
+						<input id="eff-hp" type="number" class="validate" step="1" min="1" max="999" required>
+						<label for="eff-hp">Current HP <span class="star red-text">*</span></label>
+						<span class="helper-text" data-error="Enter a valid hp stat value">The remaining HP value</span>
 					</div>
 					<div class="input-field">
 						<input id="eff-def" type="number" class="validate" step="1" min="4" max="999" required>
@@ -176,6 +261,114 @@
 						</select>
 						<label style="font-size: 14px;">Defense Type 2</label>
 						<span style="font-size: 14px;" class="helper-text">The second type if applicable</span>
+					</div>
+					<div style="visibility: hidden;" class="input-field">
+						<input type="number">
+						<label></label>
+						<span class="helper-text"></span>
+					</div>
+					<!--Defense Modifiers-->
+					<h5>Modifiers</h5>
+					<div class="gap-20"></div>
+					<div class="other-field box">
+						<label>
+							<input id="eviolite" type="checkbox" />
+							<span>Eviolite in effect</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="def-ailment" type="checkbox" />
+							<span>Having a status ailment</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="hp-full" type="checkbox" checked />
+							<span>Having full HP</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
+							<input id="type-berry" type="checkbox" />
+							<span>Holding a type-resist berry</span>
+						</label>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="def-buff">
+							<option value="-6">-6</option>
+							<option value="-5">-5</option>
+							<option value="-4">-4</option>
+							<option value="-3">-3</option>
+							<option value="-2">-2</option>
+							<option value="-1">-1</option>
+							<option value="0" selected>0</option>
+							<option value="1">+1</option>
+							<option value="2">+2</option>
+							<option value="3">+3</option>
+							<option value="4">+4</option>
+							<option value="5">+5</option>
+							<option value="6">+6</option>
+						</select>
+						<label style="font-size: 14px;">Defense stat change</label>
+						<span style="font-size: 14px;" class="helper-text">Any buff or debuff to the defense stat</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="def-screen">
+							<option value="none" selected>None</option>
+							<option value="reflect">Reflect</option>
+							<option value="light-screen">Light Screen</option>
+							<option value="aurora-veil">Aurora Veil</option>
+						</select>
+						<label style="font-size: 14px;">Defensive Screen</label>
+						<span style="font-size: 14px;" class="helper-text">Reflect, Light Screen, or Aurora Veil</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="def-ability">
+							<option value="none" selected>None</option>
+							<option value="fur-coat">Fur Coat</option>
+							<option value="filter-like">Filter</option>
+							<option value="filter-like">Solid Rock</option>
+							<option value="prism-armor">Prism Armor</option>
+							<option value="multiscale">Multiscale</option>
+							<option value="shadow-shield">Shadow Shield</option>
+							<option value="friend-guard">Friend Guard</option>
+							<option value="dry-skin">Dry Skin</option>
+							<option value="no-water">Storm Drain</option>
+							<option value="no-water">Water Absorb</option>
+							<option value="no-fire">Flash Fire</option>
+							<option value="flower-gift">Flower Gift</option>
+							<option value="no-flying">Levitate</option>
+							<option value="no-electric">Lightning Rod</option>
+							<option value="no-electric">Motor Drive</option>
+							<option value="no-electric">Volt Absorb</option>
+							<option value="marvel-scale">Marvel Scale</option>
+							<option value="sturdy">Sturdy</option>
+							<option value="thick-fat">Thick Fat</option>
+							<option value="unaware">Unaware</option>
+							<option value="wonder-guard">Wonder Guard</option>
+							<option value="no-grass">Sap Sipper</option>
+							<option value="water-bubble">Water Bubble</option>
+						</select>
+						<label style="font-size: 14px;">Defensive Ability</label>
+						<span style="font-size: 14px;" class="helper-text">Ability that reduces damage</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="def-item">
+							<option value="none" selected>None</option>
+							<option value="focus-sash">Focus Sash</option>
+							<option value="air-balloon">Air Balloon</option>
+							<option value="assault-vest">Assault Vest</option>
+						</select>
+						<label style="font-size: 14px;">Defensive Item</label>
+						<span style="font-size: 14px;" class="helper-text">Item that reduces damage</span>
+					</div>
+					<div class="input-field drop">
+						<select class="custom-select" id="field">
+							<option value="none" selected>None</option>
+						</select>
+						<label style="font-size: 14px;">Field Type</label>
+						<span style="font-size: 14px;" class="helper-text">Current terrain type of the battlefield</span>
 					</div>
 				</div>
 			</div>

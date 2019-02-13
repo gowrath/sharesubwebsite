@@ -589,7 +589,6 @@ footer {
 }
 
 #data-grid {
-  min-height: 80vh;
   h4 {
     margin-bottom: 30px;
   }
@@ -597,10 +596,19 @@ footer {
     .category-box {
       display: flex;
       flex-direction: column;
-      .input-field {
+      .input-field,
+      .other-field {
         width: 70%;
         &.drop {
           margin-top: 40px;
+        }
+        &.box {
+          margin-top: 10px;
+          margin-bottom: 10px;
+          span {
+            color: #444444;
+            font-size: 15px;
+          }
         }
         @include tablet {
           margin-left: auto;
@@ -630,9 +638,16 @@ footer {
         @include tablet {
           padding-left: 0;
         }
+        .input-field,
+        .other-field {
+          margin-right: auto;
+        }
         h5 {
           display: inline-block;
           margin-right: auto;
+          &:nth-child(n + 2) {
+            margin-top: 40px;
+          }
           @include tablet {
             margin: auto;
             margin-bottom: 20px;
@@ -657,12 +672,16 @@ footer {
         @include tablet {
           padding-right: 0;
         }
-        .input-field {
+        .input-field,
+        .other-field {
           margin-left: auto;
         }
         h5 {
           display: inline-block;
           margin-left: auto;
+          &:nth-child(n + 2) {
+            margin-top: 40px;
+          }
           @include tablet {
             margin: auto;
             margin-bottom: 20px;
