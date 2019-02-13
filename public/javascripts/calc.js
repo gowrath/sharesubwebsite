@@ -424,6 +424,46 @@ const clearStats = function() {
 	$(".stat-data").find("label").removeClass("active");
 };
 
+const clearDamage = function() {
+	// Clear results
+	$("#type-value").text("0.0×");
+	$("#min-percent").text("0");
+	$("#max-percent").text("0");
+	$("#min-value").text("0");
+	$("#max-value").text("0");
+	$("#min-remain").text("0");
+	$("#max-remain").text("0");
+	// Clear number inputs
+	$(".category-box").find(`input[type="number"]`)
+		.val(null)
+		.removeClass("valid")
+		.removeClass("invalid")
+		.siblings().removeClass("active");
+	// Clear dropdowns
+	$("#mv-type").val("");
+	$("#dmg-type").val("");
+	$("#atk-buff").val("0");
+	$("#atk-ability").val("none");
+	$("#atk-item").val("none");
+	$("#weather").val("none");
+	$("#custom-mod").val("1");
+	$("#pk-type-1").val("");
+	$("#pk-type-2").val("");
+	$("#def-buff").val("0");
+	$("#def-ability").val("none");
+	$("#def-item").val("none");
+	$("#field").val("none");
+	$("#def-screen").val("none");
+	$("select").formSelect();
+	// Reset checkboxes
+	$(`input[type="checkbox"]`).prop("checked", false);
+	$("#hp-full").prop("checked", true);
+};
+
+const evaluateDamage = function() {
+	//
+};
+
 var selectedType = null;
 var selectedNature = "hardy";
 var selectedLevel = 51;
@@ -432,6 +472,8 @@ document.querySelector(".nature-btn").classList.add("selected");
 document.querySelector(".nature-btn").classList.add("z-depth-3");
 
 $(function() {
+	$("select").formSelect();
+
 	$(".type-symbol-item").on("click", function() {
 		if ($(this).hasClass("selected")) {
 			$(this).removeClass("selected");
@@ -475,5 +517,21 @@ $(function() {
 		});
 	$("#clear-stats").on("click", clearStats);
 
-	$('select').formSelect();
+	$("#clear-dmg")
+		.on("mouseenter", function() {
+			$(this).addClass("pulse");
+		})
+		.on("mouseleave", function() {
+			$(this).removeClass("pulse");
+		})
+		.on("click", clearDamage);
+
+	$("#eva-dmg")
+		.on("mouseenter", function() {
+			$(this).addClass("pulse");
+		})
+		.on("mouseleave", function() {
+			$(this).removeClass("pulse");
+		})
+		.on("click", evaluateDamage);
 });
