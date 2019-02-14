@@ -111,8 +111,7 @@
 					<div class="input-field">
 						<input id="eff-atk" type="number" class="validate" step="1" min="4" max="999" required>
 						<label for="eff-atk">Effective Attack <span class="star red-text">*</span></label>
-						<span class="helper-text" data-error="Enter a valid attack stat value">The attack or sp. atk without
-							buff</span>
+						<span class="helper-text" data-error="Enter a valid attack stat value">Raw attack or sp. atk value</span>
 					</div>
 					<div class="input-field">
 						<input id="power" type="number" class="validate" step="1" min="1" max="500" required>
@@ -143,6 +142,12 @@
 					<div class="gap-20"></div>
 					<div class="other-field box">
 						<label>
+							<input id="stab" type="checkbox" />
+							<span>Receiving STAB</span>
+						</label>
+					</div>
+					<div class="other-field box">
+						<label>
 							<input id="crit" type="checkbox" />
 							<span>Critical hit</span>
 						</label>
@@ -151,12 +156,6 @@
 						<label>
 							<input id="z-move" type="checkbox" />
 							<span>Using Z-Move</span>
-						</label>
-					</div>
-					<div class="other-field box">
-						<label>
-							<input id="burnt" type="checkbox" />
-							<span>Being burnt</span>
 						</label>
 					</div>
 					<div class="other-field box">
@@ -207,7 +206,6 @@
 							<option value="dark-aura">Dark Aura</option>
 							<option value="fairy-aura">Fairy Aura</option>
 							<option value="galvanize">Galvanize</option>
-							<option value="guts">Guts</option>
 							<option value="double-atk">Huge Power</option>
 							<option value="double-atk">Pure Power</option>
 							<option value="hustle">Hustle</option>
@@ -224,8 +222,9 @@
 							<option value="solar-power">Solar Power</option>
 							<option value="steelworker">Steelworker</option>
 							<option value="technician">Technician</option>
-							<option value="unaware">Unaware</option>
 							<option value="tinted-lens">Tinted Lens</option>
+							<option value="unaware">Unaware</option>
+							<option value="water-bubble">Water Bubble</option>
 						</select>
 						<label style="font-size: 14px;">Offensive Ability</label>
 						<span style="font-size: 14px;" class="helper-text">Ability that increases damage</span>
@@ -293,8 +292,7 @@
 					<div class="input-field">
 						<input id="eff-def" type="number" class="validate" step="1" min="4" max="999" required>
 						<label for="eff-def">Effective Defense <span class="star red-text">*</span></label>
-						<span class="helper-text" data-error="Enter a valid defense stat value">The defense or sp. def without
-							buff</span>
+						<span class="helper-text" data-error="Enter a valid defense stat value">Raw defense or sp. def value</span>
 					</div>
 					<div class="input-field">
 						<input id="full-hp" type="number" class="validate" step="1" min="1" max="999" required>
@@ -309,7 +307,7 @@
 							<% }); %>
 						</select>
 						<label style="font-size: 14px;">Defense Type 1 <span class="star red-text">*</span></label>
-						<span style="font-size: 14px;" class="helper-text">The first type of the defensive pokémon</span>
+						<span style="font-size: 14px;" class="helper-text">First type of the target</span>
 					</div>
 					<div class="input-field drop">
 						<select class="custom-select" id="pk-type-2">
@@ -357,7 +355,7 @@
 					<div class="other-field box">
 						<label>
 							<input id="type-berry" type="checkbox" />
-							<span>Holding a type-resist berry</span>
+							<span>Holding a type-resistant berry</span>
 						</label>
 					</div>
 					<div class="input-field drop">
@@ -455,6 +453,7 @@
 					class="material-icons right">assessment</i>
 			</button>
 		</div>
+		<div id="error" class="center-align">Cannot proceed, please fill out all required fields*.</div>
 		<div id="eva-sect">
 			<h4 id="eva-head" class="valign-wrapper"><span>Result</span></h4>
 			<h5 class="row"><span class="col s1 m2"></span><span class="eva-title col s8 m6">Type
@@ -477,6 +476,7 @@
 	<!--Scripts-->
 	<% include partials/scripts %>
 	<!--Custom Scripts-->
+	<script src="/javascripts/calcUtil.js"></script>
 	<script src="/javascripts/calc.js"></script>
 </body>
 
