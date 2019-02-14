@@ -273,15 +273,69 @@ const calcFinalDamageRange = function(
   finalPower,
   finalAtk,
   finalDef,
-  constFinalMod
+  constFinalMod,
+  hpFull,
+  hp,
+  fullHp,
+  endure,
+  defenseItem,
+  defenseAbility,
+  attackAbility
 ) {
-  //
+  let dmgBase;
+  let dmgRange = {};
+  let survive = false;
+  // Check survive
+  if (hpFull) {
+    if (defenseItem === "focus-sash") {
+      survive = true;
+    } else if (defenseAbility === "sturdy") {
+      if (attackAbility !== "mode-b") {
+        survive = true;
+      }
+    }
+  }
+  if (attackAbility === "parental-bond") {
+    constFinalMod *= 1.25;
+    survive = false;
+  }
+  // Calculate damage
+  dmgBase = (Math.floor(Math.floor(Math.floor(2 * level / 5 + 2) * finalPower * finalAtk / finalDef) / 50) + 2) * constFinalMod;
+  console.log(level);
+  console.log(finalPower);
+  console.log(finalAtk);
+  console.log(finalDef);
+  console.log(constFinalMod);
+  console.log(dmgBase);
+  dmgRange["minValue"] = Math.floor(dmgBase * 0.85);
+  dmgRange["maxValue"] = Math.floor(dmgBase);
+  dmgRange["minPercent"] = (Math.floor(dmgBase * 0.85) / fullHp * 100).toFixed(1);
+  dmgRange["maxPercent"] = (Math.floor(dmgBase) / fullHp * 100).toFixed(1);
+  let minRemain = hp - dmgRange["maxValue"];
+  let maxRemain = hp - dmgRange["minValue"];
+  // Fix HP
+  if (minRemain <= 0) {
+    if (endure || survive) {
+      minRemain = 1;
+    } else {
+      minRemain = 0;
+    }
+  }
+  if (maxRemain <= 0) {
+    if (endure || survive) {
+      maxRemain = 1;
+    } else {
+      maxRemain = 0;
+    }
+  }
+  dmgRange["minRemain"] = minRemain;
+  dmgRange["maxRemain"] = maxRemain;
+  return dmgRange;
 };
 
 // Final power formula
 const getFinalPower = function(
   power,
-  stab,
   z,
   mvType,
   attackAbility,
@@ -372,14 +426,6 @@ const getFinalPower = function(
       break;
     default:
   }
-  // Check STAB
-  if (stab) {
-    if (attackAbility === "adaptability") {
-      finalPower *= 2;
-    } else {
-      finalPower *= 1.5;
-    }
-  }
   // Apply weather effect
   switch (weather) {
     case "sunlight":
@@ -418,6 +464,7 @@ const getFinalPower = function(
 // Final attack formula
 const getFinalAttack = function(
   attack,
+  crit,
   dmgType,
   attackBuff,
   attackAbility,
@@ -463,22 +510,34 @@ const getFinalAttack = function(
   } else {
     switch (attackBuff) {
       case "-6":
-        finalAttack *= 0.25;
+        if (!crit) {
+          finalAttack *= 0.25;
+        }
         break;
       case "-5":
-        finalAttack *= (2 / 7);
+        if (!crit) {
+          finalAttack *= (2 / 7);
+        }
         break;
       case "-4":
-        finalAttack *= (1 / 3);
+        if (!crit) {
+          finalAttack *= (1 / 3);
+        }
         break;
       case "-3":
-        finalAttack *= 0.4;
+        if (!crit) {
+          finalAttack *= 0.4;
+        }
         break;
       case "-2":
-        finalAttack *= 0.5;
+        if (!crit) {
+          finalAttack *= 0.5;
+        }
         break;
       case "-1":
-        finalAttack *= (2 / 3);
+        if (!crit) {
+          finalAttack *= (2 / 3);
+        }
         break;
       case "1":
         finalAttack *= 1.5;
@@ -531,6 +590,7 @@ const getFinalAttack = function(
 // Final defense formula
 const getFinalDefense = function(
   defense,
+  crit,
   dmgType,
   eviolite,
   ailment,
@@ -610,22 +670,34 @@ const getFinalDefense = function(
         finalDefense *= (2 / 3);
         break;
       case "1":
-        finalDefense *= 1.5;
+        if (!crit) {
+          finalDefense *= 1.5;
+        }
         break;
       case "2":
-        finalDefense *= 2;
+        if (!crit) {
+          finalDefense *= 2;
+        }
         break;
       case "3":
-        finalDefense *= 2.5;
+        if (!crit) {
+          finalDefense *= 2.5;
+        }
         break;
       case "4":
-        finalDefense *= 3;
+        if (!crit) {
+          finalDefense *= 3;
+        }
         break;
       case "5":
-        finalDefense *= 3.5;
+        if (!crit) {
+          finalDefense *= 3.5;
+        }
         break;
       case "6":
-        finalDefense *= 4;
+        if (!crit) {
+          finalDefense *= 4;
+        }
         break;
       default:
     }
@@ -885,8 +957,11 @@ const getTypeMod = function(
 
 // Final modifier formula
 const getFinalMod = function(
+  stab,
   crit,
   z,
+  dmgType,
+  hpFull,
   attackAbility,
   typeItem,
   attackItem,
@@ -895,7 +970,100 @@ const getFinalMod = function(
   defenseItem,
   defenseAbility,
   screen,
-  typeMod
+  typeMod,
+  mod
 ) {
-  //
+  let finalMod = 1;
+  let noScreen = false;
+  if (typeMod === 0) {
+    finalMod = 0;
+    return finalMod;
+  } else {
+    finalMod *= typeMod;
+  }
+  if (protect) {
+    if (z) {
+      finalMod *= 0.25;
+    } else {
+      finalMod = 0;
+      return finalMod;
+    }
+  }
+  // Apply ability
+  if (defenseAbility === "shadow-shield") {
+    // Skip
+  } else {
+    if (attackAbility === "mode-b") {
+      defenseAbility = "none";
+    }
+  }
+  switch (defenseAbility) {
+    case "shadow-shield":
+    case "multiscale":
+      if (hpFull) {
+        finalMod *= 0.5;
+      }
+      break;
+    case "friend-guard":
+      finalMod *= 0.75;
+      break;
+    default:
+  }
+  switch (attackAbility) {
+    case "infiltrator":
+      noScreen = true;
+      break;
+    default:
+  }
+  // Apply critical
+  if (crit) {
+    noScreen = true;
+    if (attackAbility === "sniper") {
+      finalMod *= 2.25;
+    } else {
+      finalMod *= 1.5;
+    }
+  }
+  // Check STAB
+  if (stab) {
+    if (attackAbility === "adaptability") {
+      finalMod *= 2;
+    } else {
+      finalMod *= 1.5;
+    }
+  }
+  // Apply screen
+  if (noScreen) {
+    // Skip
+  } else {
+    if (screen === "reflect") {
+      if (dmgType === "physical") {
+        finalMod *= 0.5;
+      }
+    } else if (screen === "light-screen") {
+      if (dmgType === "special") {
+        finalMod *= 0.5;
+      }
+    } else if (screen === "aurora-veil") {
+      finalMod *= 0.5;
+    }
+  }
+  // Apply item
+  switch (attackItem) {
+    case "life-orb":
+      finalMod *= 1.3;
+      break;
+    default:
+  }
+  if (attackItem === "none") {
+    if (typeItem) {
+      finalMod *= 1.2;
+    }
+  }
+  if (defenseItem === "none") {
+    if (typeBerry) {
+      finalMod *= 0.5;
+    }
+  }
+  return finalMod * mod;
 };

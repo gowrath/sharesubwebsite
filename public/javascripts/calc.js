@@ -159,7 +159,6 @@ const clearStats = function() {
 
 const clearDamage = function() {
 	// Clear results
-	$("#type-value").text("0.0×");
 	$("#min-percent").text("0");
 	$("#max-percent").text("0");
 	$("#min-value").text("0");
@@ -235,33 +234,33 @@ const evaluateDamage = function() {
 	let power;
 	let mvType;
 	let dmgType;
-	let stab;
-	let crit;
-	let z;
-	let foresignt;
-	let miracle;
-	let typeItem;
-	let attackBuff;
-	let attackAbility;
-	let attackItem;
-	let weather;
-	let mod;
+	let stab = $stab.prop("checked");
+	let crit = $crit.prop("checked");;
+	let z = $z.prop("checked");
+	let foresignt = $foresignt.prop("checked");
+	let miracle = $miracle.prop("checked");
+	let typeItem = $typeItem.prop("checked");
+	let attackBuff = $attackBuff.val();
+	let attackAbility = $attackAbility.val();
+	let attackItem = $attackItem.val();
+	let weather = $weather.val();
+	let mod = parseFloat($mod.val());
 	let hp;
 	let defense;
 	let fullHp;
 	let pkType1;
-	let pkType2;
-	let eviolite;
-	let ailment;
-	let hpFull;
-	let protect;
-	let endure;
-	let typeBerry;
-	let defenseBuff;
-	let defenseAbility;
-	let defenseItem;
-	let field;
-	let screen;
+	let pkType2 = $pkType2.val();
+	let eviolite = $eviolite.prop("checked");
+	let ailment = $ailment.prop("checked");
+	let hpFull = $hpFull.prop("checked");
+	let protect = $protect.prop("checked");
+	let endure = $endure.prop("checked");
+	let typeBerry = $typeBerry.prop("checked");
+	let defenseBuff = $defenseBuff.val();
+	let defenseAbility = $defenseAbility.val();
+	let defenseItem = $defenseItem.val();
+	let field = $field.val();
+	let screen = $screen.val();
 	// Validate required fields
 	if ($level.hasClass("valid")) {
 		level = parseInt($level.val());
@@ -314,8 +313,105 @@ const evaluateDamage = function() {
 	} else {
 		valid = false;
 	}
-	// Types Items
+	// Validate types & items
+	if (pkType1 === pkType2) {
+		valid = false;
+	}
+	if (typeItem) {
+		if (attackItem !== "none") {
+			valid = false;
+		}
+	}
+	if (typeBerry) {
+		if (defenseItem !== "none") {
+			valid = false;
+		}
+	}
 	if (valid) {
+		let finalPower = getFinalPower(
+			power,
+			z,
+			mvType,
+			attackAbility,
+			defenseAbility,
+			weather
+		);
+		let finalAttack = getFinalAttack(
+			attack,
+			crit,
+			dmgType,
+			attackBuff,
+			attackAbility,
+			attackItem,
+			weather,
+			defenseAbility
+		);
+		let finalDefense = getFinalDefense(
+			defense,
+			crit,
+			dmgType,
+			eviolite,
+			ailment,
+			defenseBuff,
+			attackAbility,
+			defenseAbility,
+			defenseItem,
+			weather,
+			pkType1,
+			pkType2
+		);
+		let finalTypeMod = getTypeMod(
+			mvType,
+			pkType1,
+			pkType2,
+			z,
+			foresignt,
+			miracle,
+			attackAbility,
+			attackItem,
+			weather,
+			defenseAbility,
+			defenseItem,
+			field
+		);
+		let finalMod = getFinalMod(
+			stab,
+			crit,
+			z,
+			dmgType,
+			hpFull,
+			attackAbility,
+			typeItem,
+			attackItem,
+			protect,
+			typeBerry,
+			defenseItem,
+			defenseAbility,
+			screen,
+			finalTypeMod,
+			mod
+		);
+		let finalDmgRange = calcFinalDamageRange(
+			level,
+			finalPower,
+			finalAttack,
+			finalDefense,
+			finalMod,
+			hpFull,
+			hp,
+			fullHp,
+			endure,
+			defenseItem,
+			defenseAbility,
+			attackAbility
+		);
+		// Update page
+		$("#min-percent").text(finalDmgRange["minPercent"]);
+		$("#max-percent").text(finalDmgRange["maxPercent"]);
+		$("#min-value").text(finalDmgRange["minValue"]);
+		$("#max-value").text(finalDmgRange["maxValue"]);
+		$("#min-remain").text(finalDmgRange["minRemain"]);
+		$("#max-remain").text(finalDmgRange["maxRemain"]);
 	} else {
 		$("#error").slideDown(500).delay(2500).slideUp(500);
 	}
