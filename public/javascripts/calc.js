@@ -332,78 +332,81 @@ const evaluateDamage = function() {
 			power,
 			z,
 			mvType,
+			dmgType,
+			typeItem,
 			attackAbility,
+			attackItem,
 			defenseAbility,
-			weather
+			weather,
+			field
 		);
 		let finalAttack = getFinalAttack(
 			attack,
 			crit,
+			mvType,
 			dmgType,
 			attackBuff,
 			attackAbility,
 			attackItem,
-			weather,
-			defenseAbility
+			defenseAbility,
+			weather
 		);
 		let finalDefense = getFinalDefense(
 			defense,
 			crit,
 			dmgType,
+			pkType1,
+			pkType2,
 			eviolite,
 			ailment,
-			defenseBuff,
 			attackAbility,
+			defenseBuff,
 			defenseAbility,
 			defenseItem,
-			weather,
-			pkType1,
-			pkType2
+			weather
 		);
-		let finalTypeMod = getTypeMod(
+		let typeModExtra = getTypeModExtra(
+			z,
 			mvType,
 			pkType1,
 			pkType2,
-			z,
 			foresignt,
 			miracle,
 			attackAbility,
 			attackItem,
-			weather,
 			defenseAbility,
 			defenseItem,
-			field
+			weather,
 		);
-		let finalMod = getFinalMod(
+		let finalMods = getFinalMods(
 			stab,
 			crit,
 			z,
+			mvType,
 			dmgType,
 			hpFull,
-			attackAbility,
-			typeItem,
-			attackItem,
 			protect,
 			typeBerry,
-			defenseItem,
+			attackAbility,
 			defenseAbility,
+			weather,
 			screen,
-			finalTypeMod,
-			mod
+			mod,
+			typeModExtra
 		);
 		let finalDmgRange = calcFinalDamageRange(
 			level,
+			hp,
+			fullHp,
+			hpFull,
+			endure,
+			attackAbility,
+			defenseAbility,
+			defenseItem,
 			finalPower,
 			finalAttack,
 			finalDefense,
-			finalMod,
-			hpFull,
-			hp,
-			fullHp,
-			endure,
-			defenseItem,
-			defenseAbility,
-			attackAbility
+			finalMods
 		);
 		// Update page
 		$("#min-percent").text(finalDmgRange["minPercent"]);

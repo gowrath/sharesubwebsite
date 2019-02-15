@@ -270,21 +270,31 @@ const typesData = {
 // Final damage formula
 const calcFinalDamageRange = function(
   level,
-  finalPower,
-  finalAtk,
-  finalDef,
-  constFinalMod,
-  hpFull,
   hp,
   fullHp,
+  hpFull,
   endure,
-  defenseItem,
+  attackAbility,
   defenseAbility,
-  attackAbility
+  defenseItem,
+  finalPower,
+  finalAttack,
+  finalDefense,
+  finalMods
 ) {
-  let dmgBase;
-  let dmgRange = {};
+  let dmgWithoutMods;
+  let finalDmgRange = {};
+  let finalMinDmg;
+  let finalMaxDmg;
+  let finalMinMods;
+  let finalMaxMods;
   let survive = false;
+  let parent = false;
+
+  finalMinMods = Array.from(finalMods);
+  finalMinMods[2] = 0.85;
+  finalMaxMods = Array.from(finalMods);
+
   // Check survive
   if (hpFull) {
     if (defenseItem === "focus-sash") {
@@ -296,23 +306,32 @@ const calcFinalDamageRange = function(
     }
   }
   if (attackAbility === "parental-bond") {
-    constFinalMod *= 1.25;
+    parent = true;
     survive = false;
   }
+
   // Calculate damage
-  dmgBase = (Math.floor(Math.floor(Math.floor(2 * level / 5 + 2) * finalPower * finalAtk / finalDef) / 50) + 2) * constFinalMod;
-  console.log(level);
-  console.log(finalPower);
-  console.log(finalAtk);
-  console.log(finalDef);
-  console.log(constFinalMod);
-  console.log(dmgBase);
-  dmgRange["minValue"] = Math.floor(dmgBase * 0.85);
-  dmgRange["maxValue"] = Math.floor(dmgBase);
-  dmgRange["minPercent"] = (Math.floor(dmgBase * 0.85) / fullHp * 100).toFixed(1);
-  dmgRange["maxPercent"] = (Math.floor(dmgBase) / fullHp * 100).toFixed(1);
-  let minRemain = hp - dmgRange["maxValue"];
-  let maxRemain = hp - dmgRange["minValue"];
+  dmgWithoutMods = (Math.floor(Math.floor(Math.floor(2 * level / 5 + 2) * finalPower * finalAttack / finalDefense) / 50) + 2);
+  finalMinDmg = dmgWithoutMods;
+  finalMaxDmg = dmgWithoutMods;
+
+  finalMinMods.forEach((mod) => {
+    finalMinDmg = Math.floor(finalMinDmg * mod);
+  });
+  finalMaxMods.forEach((mod) => {
+    finalMaxDmg = Math.floor(finalMaxDmg * mod);
+  });
+  if (parent) {
+    finalMinDmg = Math.floor(finalMinDmg * 1.25);
+    finalMaxDmg = Math.floor(finalMaxDmg * 1.25);
+  }
+
+  finalDmgRange["minValue"] = finalMinDmg
+  finalDmgRange["maxValue"] = finalMaxDmg;
+  finalDmgRange["minPercent"] = (finalMinDmg / fullHp * 100).toFixed(1);
+  finalDmgRange["maxPercent"] = (finalMaxDmg / fullHp * 100).toFixed(1);
+  let minRemain = hp - finalDmgRange["maxValue"];
+  let maxRemain = hp - finalDmgRange["minValue"];
   // Fix HP
   if (minRemain <= 0) {
     if (endure || survive) {
@@ -328,9 +347,9 @@ const calcFinalDamageRange = function(
       maxRemain = 0;
     }
   }
-  dmgRange["minRemain"] = minRemain;
-  dmgRange["maxRemain"] = maxRemain;
-  return dmgRange;
+  finalDmgRange["minRemain"] = minRemain;
+  finalDmgRange["maxRemain"] = maxRemain;
+  return finalDmgRange;
 };
 
 // Final power formula
@@ -338,9 +357,13 @@ const getFinalPower = function(
   power,
   z,
   mvType,
+  dmgType,
+  typeItem,
   attackAbility,
+  attackItem,
   defenseAbility,
   weather,
+  field
 ) {
   let finalPower = power;
   // Apply Z
@@ -388,72 +411,103 @@ const getFinalPower = function(
   }
   // Apply ability
   switch (attackAbility) {
+    case "steelworker":
+      if (mvType === "steel") {
+        finalPower = Math.floor(finalPower * 1.5);
+      }
+      break;
+    case "water-bubble":
+      if (mvType === "water") {
+        finalPower = Math.floor(finalPower * 2);
+      }
+      break;
+    case "technician":
+      if (finalPower <= 60) {
+        finalPower = Math.floor(finalPower * 1.5);
+      }
+      break;
+    case "Aerilate":
+    case "galvanize":
+    case "pixilate":
+    case "refrigerate":
+      if (mvType === "normal") {
+        if (!z) {
+          finalPower = Math.floor(finalPower * 1.2);
+        }
+      }
+      break;
+    case "normalize":
+      if (!z) {
+        finalPower = Math.floor(finalPower * 1.2);
+      }
+      break;
+    case "sand-force":
+      if (mvType === "rock" || mvType === "steel" || mvType === "ground") {
+        if (weather === "sandstorm") {
+          finalPower = Math.floor(finalPower * 1.3);
+        }
+      }
+      break;
     case "dark-aura":
       if (mvType === "dark") {
-        if (defenseAbility === "aura-break") {
-          finalPower /= 1.33;
+        if (defenseAbility !== "aura-break") {
+          finalPower = Math.floor(finalPower * 1.33);
         } else {
-          finalPower *= 1.33;
+          finalPower = Math.floor(finalPower * 0.75);
         }
       }
       break;
     case "fairy-aura":
       if (mvType === "fairy") {
-        if (defenseAbility === "aura-break") {
-          finalPower /= 1.33;
+        if (defenseAbility !== "aura-break") {
+          finalPower = Math.floor(finalPower * 1.33);
         } else {
-          finalPower *= 1.33;
+          finalPower = Math.floor(finalPower * 0.75);
         }
-      }
-      break;
-    case "protean":
-      stab = true;
-      break;
-    case "steelworker":
-      if (mvType === "steel") {
-        finalPower *= 1.5;
-      }
-      break;
-    case "water-bubble":
-      if (mvType === "water") {
-        finalPower *= 2;
-      }
-      break;
-    case "technician":
-      if (finalPower <= 60) {
-        finalPower *= 1.5;
       }
       break;
     default:
   }
-  // Apply weather effect
-  switch (weather) {
-    case "sunlight":
-      if (mvType === "fire") {
-        finalPower *= 1.5;
-      } else if (mvType === "water") {
-        finalPower *= 0.5;
+  // Apply item
+  if (typeItem) {
+    finalPower = Math.floor(finalPower * 1.2);
+  }
+  switch (attackItem) {
+    case "life-orb":
+      finalPower = Math.floor(finalPower * (5324 / 4096));
+      break;
+    case "muscle-band":
+      if (dmgType === "physical") {
+        finalPower = Math.floor(finalPower * 1.1);
       }
       break;
-    case "ex-sunlight":
-      if (mvType === "fire") {
-        finalPower *= 1.5;
-      } else if (mvType === "water") {
-        finalPower *= 0;
+    case "wise-glasses":
+      if (dmgType === "special") {
+        finalPower = Math.floor(finalPower * 1.1);
       }
       break;
-    case "rain":
-      if (mvType === "water") {
-        finalPower *= 1.5;
-      } else if (mvType === "fire") {
-        finalPower *= 0.5;
+    default:
+  }
+  // Apply field
+  switch (field) {
+    case "electric":
+      if (mvType === "electric") {
+        finalPower = Math.floor(finalPower * 1.5);
       }
       break;
-    case "ex-rain":
-      if (mvType === "water") {
-        finalPower *= 1.5;
-      } else if (mvType === "fire") {
-        finalPower *= 0;
+    case "grassy":
+      if (mvType === "grass") {
+        finalPower = Math.floor(finalPower * 1.5);
+      }
+      break;
+    case "psychic":
+      if (mvType === "psychic") {
+        finalPower = Math.floor(finalPower * 1.5);
+      }
+      break;
+    case "misty":
+      if (mvType === "dragon") {
+        finalPower = Math.floor(finalPower * 0.5);
       }
       break;
     default:
@@ -465,42 +519,65 @@ const getFinalPower = function(
 const getFinalAttack = function(
   attack,
   crit,
+  mvType,
   dmgType,
   attackBuff,
   attackAbility,
   attackItem,
-  weather,
-  defenseAbility
+  defenseAbility,
+  weather
 ) {
   let finalAttack = attack;
   // Apply ability
   switch (attackAbility) {
     case "double-atk":
       if (dmgType === "physical") {
-        finalAttack *= 2;
+        finalAttack = Math.floor(finalAttack * 2);
       }
       break;
     case "hustle":
       if (dmgType === "physical") {
-        finalAttack *= 1.5;
+        finalAttack = Math.floor(finalAttack * 1.5);
       }
       break;
     case "solar-power":
       if (weather === "sunlight" || weather === "ex-sunlight") {
         if (dmgType === "special") {
-          finalAttack *= 1.5;
+          finalAttack = Math.floor(finalAttack * 1.5);
         }
       }
       break;
     case "flower-gift":
       if (weather === "sunlight" || weather === "ex-sunlight") {
         if (dmgType === "physical") {
-          finalAttack *= 1.5;
+          finalAttack = Math.floor(finalAttack * 1.5);
         }
       }
       break;
     case "mode-b":
       defenseAbility = "none";
+      break;
+    default:
+  }
+  switch (defenseAbility) {
+    case "thick-fat":
+      if (mvType === "fire" || mvType === "ice") {
+        finalAttack = Math.floor(finalAttack * 0.5);
+      }
+      break;
+    default:
+  }
+  // Apply item
+  switch (attackItem) {
+    case "choice-band":
+      if (dmgType === "physical") {
+        finalAttack = Math.floor(finalAttack * 1.5);
+      }
+      break;
+    case "choice-specs":
+      if (dmgType === "special") {
+        finalAttack = Math.floor(finalAttack * 1.5);
+      }
       break;
     default:
   }
@@ -511,78 +588,54 @@ const getFinalAttack = function(
     switch (attackBuff) {
       case "-6":
         if (!crit) {
-          finalAttack *= 0.25;
+          finalAttack = Math.floor(finalAttack * 0.25);
         }
         break;
       case "-5":
         if (!crit) {
-          finalAttack *= (2 / 7);
+          finalAttack = Math.floor(finalAttack * (2 / 7));
         }
         break;
       case "-4":
         if (!crit) {
-          finalAttack *= (1 / 3);
+          finalAttack = Math.floor(finalAttack * (1 / 3));
         }
         break;
       case "-3":
         if (!crit) {
-          finalAttack *= 0.4;
+          finalAttack = Math.floor(finalAttack * 0.4);
         }
         break;
       case "-2":
         if (!crit) {
-          finalAttack *= 0.5;
+          finalAttack = Math.floor(finalAttack * 0.5);
         }
         break;
       case "-1":
         if (!crit) {
-          finalAttack *= (2 / 3);
+          finalAttack = Math.floor(finalAttack * (2 / 3));
         }
         break;
       case "1":
-        finalAttack *= 1.5;
+        finalAttack = Math.floor(finalAttack * 1.5);
         break;
       case "2":
-        finalAttack *= 2;
+        finalAttack = Math.floor(finalAttack * 2);
         break;
       case "3":
-        finalAttack *= 2.5;
+        finalAttack = Math.floor(finalAttack * 2.5);
         break;
       case "4":
-        finalAttack *= 3;
+        finalAttack = Math.floor(finalAttack * 3);
         break;
       case "5":
-        finalAttack *= 3.5;
+        finalAttack = Math.floor(finalAttack * 3.5);
         break;
       case "6":
-        finalAttack *= 4;
+        finalAttack = Math.floor(finalAttack * 4);
         break;
       default:
     }
-  }
-  // Apply item
-  switch (attackItem) {
-    case "choice-band":
-      if (dmgType === "physical") {
-        finalAttack *= 1.5;
-      }
-      break;
-    case "choice-specs":
-      if (dmgType === "special") {
-        finalAttack *= 1.5;
-      }
-      break;
-    case "muscle-band":
-      if (dmgType === "physical") {
-        finalAttack *= 1.1;
-      }
-      break;
-    case "wise-glasses":
-      if (dmgType === "special") {
-        finalAttack *= 1.1;
-      }
-      break;
-    default:
   }
   return finalAttack;
 };
@@ -592,15 +645,15 @@ const getFinalDefense = function(
   defense,
   crit,
   dmgType,
+  pkType1,
+  pkType2,
   eviolite,
   ailment,
-  defenseBuff,
   attackAbility,
+  defenseBuff,
   defenseAbility,
   defenseItem,
-  weather,
-  pkType1,
-  pkType2
+  weather
 ) {
   let finalDefense = defense;
   // Apply ability
@@ -610,20 +663,20 @@ const getFinalDefense = function(
   switch (defenseAbility) {
     case "fur-coat":
       if (dmgType === "physical") {
-        finalDefense *= 2;
+        finalDefense = Math.floor(finalDefense * 2);
       }
       break;
     case "flower-gift":
       if (dmgType === "special") {
         if (weather === "sunlight" || weather === "ex-sunlight") {
-          finalDefense *= 1.5;
+          finalDefense = Math.floor(finalDefense * 1.5);
         }
       }
       break;
     case "marvel-scale":
       if (ailment) {
         if (dmgType === "physical") {
-          finalDefense *= 1.5;
+          finalDefense = Math.floor(finalDefense * 1.5);
         }
       }
       break;
@@ -633,7 +686,7 @@ const getFinalDefense = function(
   if (weather === "sandstorm") {
     if (pkType1 === "rock" || pkType2 === "rock") {
       if (dmgType === "special") {
-        finalDefense *= 1.5;
+        finalDefense = Math.floor(finalDefense * 1.5);
       }
     }
   }
@@ -641,10 +694,14 @@ const getFinalDefense = function(
   switch (defenseItem) {
     case "assault-vest":
       if (dmgType === "special") {
-        finalDefense *= 1.5;
+        finalDefense = Math.floor(finalDefense * 1.5);
       }
       break;
     default:
+  }
+  // Check eviolite
+  if (eviolite) {
+    finalDefense = Math.floor(finalDefense * 1.5);
   }
   // Apply stat change
   if (attackAbility === "unaware") {
@@ -652,81 +709,77 @@ const getFinalDefense = function(
   } else {
     switch (defenseBuff) {
       case "-6":
-        finalDefense *= 0.25;
+        finalDefense = Math.floor(finalDefense * 0.25);
         break;
       case "-5":
-        finalDefense *= (2 / 7);
+        finalDefense = Math.floor(finalDefense * (2 / 7));
         break;
       case "-4":
-        finalDefense *= (1 / 3);
+        finalDefense = Math.floor(finalDefense * (1 / 3));
         break;
       case "-3":
-        finalDefense *= 0.4;
+        finalDefense = Math.floor(finalDefense * 0.4);
         break;
       case "-2":
-        finalDefense *= 0.5;
+        finalDefense = Math.floor(finalDefense * 0.5);
         break;
       case "-1":
-        finalDefense *= (2 / 3);
+        finalDefense = Math.floor(finalDefense * (2 / 3));
         break;
       case "1":
         if (!crit) {
-          finalDefense *= 1.5;
+          finalDefense = Math.floor(finalDefense * 1.5);
         }
         break;
       case "2":
         if (!crit) {
-          finalDefense *= 2;
+          finalDefense = Math.floor(finalDefense * 2);
         }
         break;
       case "3":
         if (!crit) {
-          finalDefense *= 2.5;
+          finalDefense = Math.floor(finalDefense * 2.5);
         }
         break;
       case "4":
         if (!crit) {
-          finalDefense *= 3;
+          finalDefense = Math.floor(finalDefense * 3);
         }
         break;
       case "5":
         if (!crit) {
-          finalDefense *= 3.5;
+          finalDefense = Math.floor(finalDefense * 3.5);
         }
         break;
       case "6":
         if (!crit) {
-          finalDefense *= 4;
+          finalDefense = Math.floor(finalDefense * 4);
         }
         break;
       default:
     }
   }
-  // Check eviolite
-  if (eviolite) {
-    finalDefense *= 1.5;
-  }
   return finalDefense;
 };
 
 // Type modifier formula
-const getTypeMod = function(
+const getTypeModExtra = function(
+  z,
   mvType,
   pkType1,
   pkType2,
-  z,
   foresignt,
   miracle,
   attackAbility,
   attackItem,
-  weather,
   defenseAbility,
   defenseItem,
-  field
+  weather,
 ) {
-  let typeMod = 1;
-  let extraMod = 1;
-  let eff = "nm";
+  let typeModExtra = [];
+  typeModExtra.push(1);
+  typeModExtra.push("nm");
+  typeModExtra.push(1);
   let ignoreIm = false;
   pkType1 = allTypes.indexOf(pkType1);
   if (pkType2) {
@@ -745,30 +798,25 @@ const getTypeMod = function(
       case "aerilate":
         if (mvType === "normal") {
           mvType = "flying";
-          extraMod *= 1.2;
         }
         break;
       case "galvanize":
         if (mvType === "normal") {
           mvType = "electric";
-          extraMod *= 1.2;
         }
         break;
       case "pixilate":
         if (mvType === "normal") {
           mvType = "fairy";
-          extraMod *= 1.2;
         }
         break;
       case "refrigerate":
         if (mvType === "normal") {
           mvType = "ice";
-          extraMod *= 1.2;
         }
         break;
       case "normalize":
         mvType = "normal";
-        extraMod *= 1.2;
         break;
       default:
     }
@@ -794,53 +842,46 @@ const getTypeMod = function(
   // Calculate type effectiveness
   let data = typesData[mvType]["offense"];
   if (data["se"].includes(pkType1)) {
-    typeMod *= 2;
+    typeModExtra[0] *= 2;
   } else if (data["ne"].includes(pkType1)) {
-    typeMod *= 0.5;
+    typeModExtra[0] *= 0.5;
   } else if (data["na"].includes(pkType1) && !ignoreIm) {
-    typeMod = 0;
-    return typeMod;
+    typeModExtra[0] = 0;
+    return typeModExtra;
   }
   if (pkType2) {
     if (data["se"].includes(pkType2)) {
-      typeMod *= 2;
+      typeModExtra[0] *= 2;
     } else if (data["ne"].includes(pkType2)) {
-      typeMod *= 0.5;
+      typeModExtra[0] *= 0.5;
     } else if (data["na"].includes(pkType2) && !ignoreIm) {
-      typeMod = 0;
-      return typeMod;
+      typeModExtra[0] = 0;
+      return typeModExtra;
     }
   }
-  if (typeMod >= 2) {
-    eff = "se";
-  } else if (typeMod < 1) {
-    eff = "ne";
+  if (typeModExtra[0] >= 2) {
+    typeModExtra[1] = "se";
+  } else if (typeModExtra[0] < 1) {
+    typeModExtra[1] = "ne";
   }
   // Check for strong winds
   if (weather === "strong-winds") {
     if (pkType1 === 7 || pkType2 === 7) {
       if (mvType === "ice" || mvType === "electric" || mvType === "rock") {
-        extraMod *= 0.5;
+        typeModExtra[0] *= 0.5;
       }
     }
   }
   // Apply attack ability
   switch (attackAbility) {
     case "neuroforce":
-      if (eff === "se") {
-        extraMod *= 1.25;
-      }
-      break;
-    case "sand-force":
-      if (weather === "sandstorm") {
-        if (mvType === "rock" || mvType === "steel" || mvType === "ground") {
-          extraMod *= 1.3;
-        }
+      if (typeModExtra[1] === "se") {
+        typeModExtra[2] *= 1.25;
       }
       break;
     case "tinted-lens":
-      if (eff === "ne") {
-        typeMod *= 2;
+      if (typeModExtra[1] === "ne") {
+        typeModExtra[2] *= 2;
       }
       break;
     default:
@@ -849,63 +890,58 @@ const getTypeMod = function(
   switch (defenseAbility) {
     case "filter-like":
     case "prism-armor":
-      if (eff === "se") {
-        extraMod *= 0.75;
+      if (typeModExtra[1] === "se") {
+        typeModExtra[2] *= 0.75;
       }
       break;
     case "dry-skin":
       if (mvType === "fire") {
-        extraMod *= 1.25;
+        typeModExtra[2] *= 1.25;
       } else if (mvType === "water") {
-        typeMod = 0;
-        return typeMod;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     case "no-water":
       if (mvType === "water") {
-        typeMod = 0;
-        return typeMod;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     case "no-fire":
       if (mvType === "fire") {
-        typeMod = 0;
-        return typeMod;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     case "no-flying":
       if (mvType === "flying" && field !== "gravity") {
-        typeMod = 0;
-        return typeMod;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     case "no-electric":
       if (mvType === "electric") {
-        typeMod = 0;
-        return typeMod;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     case "no-grass":
       if (mvType === "grass") {
-        typeMod = 0;
-        return typeMod;
-      }
-      break;
-    case "thick-fat":
-      if (mvType === "fire" || mvType === "ice") {
-        extraMod *= 0.5;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     case "heatproof":
     case "water-bubble":
       if (mvType === "fire") {
-        extraMod = 0.5;
+        typeModExtra[2] *= 0.5;
       }
       break;
     case "wonder-guard":
-      if (eff !== "se") {
-        typeMod = 0;
-        return typeMod;
+      if (typeModExtra[1] !== "se") {
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     default:
@@ -913,8 +949,8 @@ const getTypeMod = function(
   // Apply item
   switch (attackItem) {
     case "expert-belt":
-      if (eff === "se") {
-        extraMod *= 1.2;
+      if (typeModExtra[1] === "se") {
+        typeModExtra[2] *= 1.2;
       }
       break;
     default:
@@ -922,72 +958,86 @@ const getTypeMod = function(
   switch (defenseItem) {
     case "air-balloon":
       if (field !== "gravity") {
-        typeMod = 0;
-        return typeMod;
+        typeModExtra[0] = 0;
+        return typeModExtra;
       }
       break;
     default:
   }
-  // Apply field
-  switch (field) {
-    case "electric":
-      if (mvType === "electric") {
-        extraMod *= 1.5;
-      }
-      break;
-    case "grassy":
-      if (mvType === "grass") {
-        extraMod *= 1.5;
-      }
-      break;
-    case "psychic":
-      if (mvType === "psychic") {
-        extraMod *= 1.5;
-      }
-      break;
-    case "misty":
-      if (mvType === "dragon") {
-        extraMod *= 0.5;
-      }
-      break;
-    default:
-  }
-  return typeMod * extraMod;
+  return typeModExtra;
 };
 
 // Final modifier formula
-const getFinalMod = function(
+const getFinalMods = function(
   stab,
   crit,
   z,
+  mvType,
   dmgType,
   hpFull,
-  attackAbility,
-  typeItem,
-  attackItem,
   protect,
   typeBerry,
-  defenseItem,
+  attackAbility,
   defenseAbility,
+  weather,
   screen,
-  typeMod,
-  mod
+  mod,
+  typeModExtra
 ) {
-  let finalMod = 1;
+  let finalMods = [];
   let noScreen = false;
-  if (typeMod === 0) {
-    finalMod = 0;
-    return finalMod;
-  } else {
-    finalMod *= typeMod;
+
+  finalMods.push(1);                  // 0 Weather
+  finalMods.push(1);                  // 1 Critical
+  finalMods.push(1);                  // 2 Random
+  finalMods.push(1);                  // 3 STAB
+  finalMods.push(typeModExtra[0]);    // 4 Type
+  finalMods.push(typeModExtra[2]);    // 5 Other
+
+  if (typeModExtra[0] === 0) {
+    return finalMods;
   }
   if (protect) {
     if (z) {
-      finalMod *= 0.25;
+      finalMods[5] *= 0.25;
     } else {
-      finalMod = 0;
-      return finalMod;
+      finalMods[5] = 0;
+      return finalMods;
     }
+  }
+  // Apply weather
+  switch (weather) {
+    case "sunlight":
+      if (mvType === "fire") {
+        finalMods[0] = 1.5;
+      } else if (mvType === "water") {
+        finalMods[0] = 0.5;
+      }
+      break;
+    case "ex-sunlight":
+      if (mvType === "fire") {
+        finalMods[0] = 1.5;
+      } else if (mvType === "water") {
+        finalMods[0] = 0;
+        return finalMods;
+      }
+      break;
+    case "rain":
+      if (mvType === "water") {
+        finalMods[0] = 1.5;
+      } else if (mvType === "fire") {
+        finalMods[0] = 0.5;
+      }
+      break;
+    case "ex-rain":
+      if (mvType === "water") {
+        finalMods[0] = 1.5;
+      } else if (mvType === "fire") {
+        finalMods[0] = 0;
+        return finalMods;
+      }
+      break;
+    default:
   }
   // Apply ability
   if (defenseAbility === "shadow-shield") {
@@ -1001,11 +1051,11 @@ const getFinalMod = function(
     case "shadow-shield":
     case "multiscale":
       if (hpFull) {
-        finalMod *= 0.5;
+        finalMods[5] *= 0.5;
       }
       break;
     case "friend-guard":
-      finalMod *= 0.75;
+      finalMods[5] *= 0.75;
       break;
     default:
   }
@@ -1018,18 +1068,20 @@ const getFinalMod = function(
   // Apply critical
   if (crit) {
     noScreen = true;
+    finalMods[1] = 1.5;
     if (attackAbility === "sniper") {
-      finalMod *= 2.25;
-    } else {
-      finalMod *= 1.5;
+      finalMods[5] *= 1.5;
     }
   }
   // Check STAB
+  if (attackAbility === "protean") {
+    stab = true;
+  }
   if (stab) {
     if (attackAbility === "adaptability") {
-      finalMod *= 2;
+      finalMods[3] = 2;
     } else {
-      finalMod *= 1.5;
+      finalMods[3] = 1.5;
     }
   }
   // Apply screen
@@ -1038,32 +1090,22 @@ const getFinalMod = function(
   } else {
     if (screen === "reflect") {
       if (dmgType === "physical") {
-        finalMod *= 0.5;
+        finalMods[5] *= 0.5;
       }
     } else if (screen === "light-screen") {
       if (dmgType === "special") {
-        finalMod *= 0.5;
+        finalMods[5] *= 0.5;
       }
     } else if (screen === "aurora-veil") {
-      finalMod *= 0.5;
+      finalMods[5] *= 0.5;
     }
   }
   // Apply item
-  switch (attackItem) {
-    case "life-orb":
-      finalMod *= 1.3;
-      break;
-    default:
-  }
-  if (attackItem === "none") {
-    if (typeItem) {
-      finalMod *= 1.2;
+  if (typeBerry) {
+    if (typeModExtra[1] === "se") {
+      finalMods[5] *= 0.5;
     }
   }
-  if (defenseItem === "none") {
-    if (typeBerry) {
-      finalMod *= 0.5;
-    }
-  }
-  return finalMod * mod;
+  finalMods[5] *= mod;
+  return finalMods;
 };
