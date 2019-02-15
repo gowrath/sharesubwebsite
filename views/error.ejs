@@ -1,6 +1,26 @@
-<h1>
-	<%= message %>
-</h1>
-<h2>
-	<%= error.status %>
-</h2>
+<!DOCTYPE html>
+<html lang="en">
+<!--Head-->
+<% include partials/head %>
+
+<body>
+	<!--Navbar-->
+	<% include partials/nav %>
+	<!--Error Content-->
+	<section style="margin-top: 55px;" class="container">
+		<div class="flex-col-center">
+			<img src="images/error.jpg" alt="error">
+			<h1 style="font-family: 'Coiny'; font-size: 64px; margin-bottom: 30px; margin-top: 50px;"
+				class="pink-text text-lighten-2"><%= error.status %> <%= message %></h1>
+			<div style="font-size: 20px;" class="grey-text text-darken-2">Sorry, we cannot find the content you are looking
+				for.</div>
+			<div style="font-size: 20px; margin-top: 5px;" class="grey-text text-darken-2">But you can visit other awesome
+				content by using the links on the navbar.
+			</div>
+		</div>
+	</section>
+	<!--Footer-->
+	<% include partials/footer %>
+</body>
+
+</html>
