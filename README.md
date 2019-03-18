@@ -4,7 +4,7 @@
 
 Pokémon World is a dynamically served website that contains a lot of useful information related to game data and core mechanics. It is not a professional website like Serebii or Smogon, but it has a beautifully designed user interface powered by Materialize CSS. This application is built with Node.js and Express, and it has certain limitations due to the fact that HTML pages are entirely rendered on the server side. [Pokéapi-v2](https://github.com/PokeAPI/pokedex-promise-v2) is the backbone of the project as it provides all the data used internally inside the routing layer.
 
-## Build <img src="https://www.pkparaiso.com/imagenes/shuffle/sprites/798.png" alt="icon" height="40" />
+## Build <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/798.png" alt="icon" height="40" />
 ### Prerequisites
 * [Node.js](https://nodejs.org/en/)
 * [Express.js](https://expressjs.com/)
@@ -19,7 +19,7 @@ Pokémon World is a dynamically served website that contains a lot of useful inf
 4. Run `npm start` or `nodemon` (if you have installed nodemon) to start the server.
 5. Open your browser and the application is served on port 3000 by default.
 
-## Feature Tour <img src="https://www.serebii.net/shuffle/pokemon/001.png" alt="icon" height="40" />
+## Feature Tour <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/001.png" alt="icon" height="40" />
 As of now, the main features of the application are provided by three separate pages which can be accessed using the links on the navbar.
 
 ### Pokédex
@@ -51,13 +51,13 @@ As of now, the main features of the application are provided by three separate p
 * Input fields marked with a red **\*** are required.
 * Don't worry too much about the technicalities, just play with the calculator and have some fun.
 
-## Issues <img src="https://ya-webdesign.com/images/gardevoir-transparent-pokemon-conquest-17.png" alt="icon" height="40" />
+## Issues <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/282.png" alt="icon" height="40" />
 * Because of server-side rendering, certain pages (the Itemdex page in particular) that contain lots of fetched data can take more than a few seconds to load before the view is returned. If you are running the application locally and you have suboptimal Internet, the connect could time out on these pages in which case you have to click on the link again to get the page to properly render. Fortunately, Node has internal caching, meaning that once data is received, it stays in memory until you shutdown the server, so even if the server times out while fetching data, the fetched data will no longer need to be retrieved again, and the next request can be processed way faster.
 * The application relies on Pokéapi to function, but unfortunately, Pokéapi-v2 is not maintained by developers enthusiastically, and therefore the server cannot retrieve information about some of the newest pokémon (after #802 as of day of this writing). Most pokémon's move learnsets are also out of date. I have noticed in multiple occasions where I know there are moves legally obtainable by certain pokémon but they are not shown on the page. Mega Evolutions are currently not present in the application due to other complications.
 * Even though I made my best effort to make the Damage Calculator as accurate as possible, the calculated values might vary slightly compare to the real game or the Pokémon Showdown calculator when creating a complex scenario with multiple conditions that interact with each other. This is due to the fact that too many modifiers can be applied to a single calculation, and they might be applied at different parts of the damage formula. The official Pokémon game has crazy rounding rules and the order for applying modifiers also matter, so it is incredibly hard to make a ***perfect*** calculator without the official documentation which Nintendo obviously never made publicly available.
 * You can contact me directly if you have solid and realistic suggestions which I can use to improve the quality of this application.
 
-## References <img src="https://pogo-tb.nl/Groningen/core/pokemons/373_shuffle.png" alt="icon" height="40" />
+## References <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/373.png" alt="icon" height="40" />
 * [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page)
 * [Serebii](https://www.serebii.net/index2.shtml)
 * [Pokémon Showdown!](https://pokemonshowdown.com/)
