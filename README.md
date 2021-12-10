@@ -1,8 +1,6 @@
-# Pokémon World <img src="https://vignette.wikia.nocookie.net/pkmnshuffle/images/3/3d/Mega_Blaziken.png/revision/latest?cb=20170409222119" alt="icon" height="50" />
-[![GitHub license](https://img.shields.io/github/license/Naereen/StrapDown.js.svg)](https://opensource.org/licenses/MIT)
-[![Website shields.io](https://img.shields.io/website-up-down-green-red/http/shields.io.svg)](https://se-pokemon-world.herokuapp.com/)
+https://sharesub.net
 
-Pokémon World is a dynamically served website that contains a lot of useful information related to game data and core mechanics. It is not a professional website like Serebii or Smogon, but it has a beautifully designed user interface powered by Materialize CSS. This application is built with Node.js and Express, and it has certain limitations due to the fact that HTML pages are entirely rendered on the server side. [Pokéapi-v2](https://github.com/PokeAPI/pokedex-promise-v2) is the backbone of the project as it provides all the data used internally inside the routing layer.
+Share Sub is a dynamically served website that contains a lot of useful information related to game data and core mechanics. It is not a professional website like Serebii or Smogon, but it has a beautifully designed user interface powered by Materialize CSS. This application is built with Node.js and Express, and it has certain limitations due to the fact that HTML pages are entirely rendered on the server side. [Pokéapi-v2](https://github.com/PokeAPI/pokedex-promise-v2) is the backbone of the project as it provides all the data used internally inside the routing layer.
 
 ## Build <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/798.png" alt="icon" height="40" />
 ### Prerequisites
@@ -12,15 +10,6 @@ Pokémon World is a dynamically served website that contains a lot of useful inf
 * [Pokéapi-v2](https://github.com/PokeAPI/pokedex-promise-v2)
 * [nodemon](https://nodemon.io/) (not required but highly recommended)
 
-### Install and Run
-1. Clone or download this repository.
-2. Change into the project directory where the package.json is located.
-3. Run `npm install` to acquire all dependencies.
-4. Run `npm start` or `nodemon` (if you have installed nodemon) to start the server.
-5. Open your browser and the application is served on port 3000 by default.
-
-## Feature Tour <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/001.png" alt="icon" height="40" />
-As of now, the main features of the application are provided by three separate pages which can be accessed using the links on the navbar.
 
 ### Pokédex
 * Use the search box on the Pokédex page to look up any pokémon that you are interested in.
