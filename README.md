@@ -1,4 +1,4 @@
-https://sharesub.net
+https://sharesub.net - Created by John Bang
 
 Share Sub is a web project of mine using the Express Node.js backend framework. 
 
