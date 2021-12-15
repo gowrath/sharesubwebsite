@@ -2,7 +2,11 @@ https://sharesub.net - Created by John Bang
 
 Share Sub is a web project of mine using the Express Node.js backend framework. 
 
-It is a dynamically served website that contains a lot of useful information related to game data and core mechanics. It is not a professional website but it has a beautifully designed user interface powered by Materialize CSS. 
+The concept is for users to share their subscriptions in an informal way (to show friends which subscriptions they currently have, including Netflix, Spotify, Apple Music, NY Times, etc..)
+
+It is a dynamically served website that contains a lot of useful information related to game data and core mechanics. 
+
+It is not a professional website but it has a beautifully designed user interface powered by Materialize CSS. 
 
 This application is built with Node.js and Express, and it has certain limitations due to the fact that HTML pages are entirely rendered on the server side.
 
