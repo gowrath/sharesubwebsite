@@ -14,8 +14,7 @@ This application is built with Node.js and Express, and it has certain limitatio
 
 [Pokéapi-v2](https://github.com/PokeAPI/pokedex-promise-v2) is the backbone of the project as it provides all the data used internally inside the routing layer.
 
-## Build <img src="https://raw.githubusercontent.com/Kairn/asset-bank/master/pok%C3%A9mon/mini-icons/798.png" alt="icon" height="40" />
-### Prerequisites
+### Technologies Used:
 * [Node.js](https://nodejs.org/en/)
 * [Express.js](https://expressjs.com/)
 * [node-sass](https://www.npmjs.com/package/node-sass?activeTab=versions)
